@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Capire Books </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primitive-ui/dist/css/main.css">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+
+<body class="small-container" , style="margin-top: 70px;">
+    <div id='app'>
+        <div v-if="message.text" class="modal-overlay">
+            <div :class="message.type" class="message-modal">
+                {{ message.text }}
+            </div>
+        </div>
+
+        <form class="user" @submit.prevent="login">
+            <div v-if="user">
+                <div v-if="user.tenant">Tenant: {{ user.tenant }}</div>
+                <div>User: {{ user.name }}</div>
+                <div>Email: {{ user.email }}</div>
+                <button type="button" @click="logout" class="muted-button">Cerrar sesión</button>
+            </div>
+
+            <div v-else>
+                <div>
+                    <label for="email">Correo:</label>
+                    <input type="email" v-model="credentials.email" id="email" required>
+                </div>
+
+                <div>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" v-model="credentials.password" id="password" required>
+                </div>
+
+                <button type="submit" class="muted-button">Iniciar sesión</button>
+            </div>
+        </form>
+
+        <div v-if="logined">
+            <div v-if="!showCreateForm">
+
+                <div class="titles">
+                    <h1> Capire Books </h1>
+                    <button v-if="isAdmin" class="normalButton" @click="toggleCreateForm">
+                        Crear libro
+                    </button>
+                </div>
+
+
+                <input type="text" placeholder="Search..." @input="search">
+
+                <table id='books' class="hovering">
+                    <thead>
+                        <th> Book </th>
+                        <th> Author </th>
+                        <th> Genre </th>
+                        <th> Price </th>
+                    </thead>
+                    <tr v-for="book in list" v-bind:id="book.ID" v-on:click="inspect">
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.genre?.name || "N/A"}}</td>
+
+                        <td>{{ book.currency && book.currency.symbol }} {{ book.price }}</td>
+                    </tr>
+                </table>
+
+                <div v-if="book">
+                    <label style="text-align:right">
+                        <span class="succeeded"> {{ order.succeeded }} </span>
+                        <span class="failed"> {{ order.failed }} </span>
+                    </label>
+                    <form @submit.prevent="submitOrder" style="float:right; display:flex; flex-direction:row-reverse">
+                        <input type="number" v-model="order.quantity" v-bind:class="{ failed: order.failed }"
+                            style="width:5em">
+                        <input type="submit" value="Order:" class="muted-button">
+                    </form>
+
+                    <!-- Mostrar datos si NO está en edición -->
+                    <div v-if="!editMode">
+                        <h4>{{ book.title }}</h4>
+                        <p>{{ book.descr }}</p>
+                        <p><b>Autor:</b> {{ book.author }}</p>
+                        <p><b>Género:</b> {{ book.genre?.name }}</p>
+                        <p><b>Código de Moneda: </b> {{book.currency_code}}</p>
+                        <p><b>Precio:</b> {{ book.price }}</p>
+                        <p><b>Stock:</b> {{ book.stock }}</p>
+
+                        <button v-if="isAdmin" class="delete" @click="deleteBook(book.ID)">
+                            Eliminar
+                        </button>
+                        <button v-if="isAdmin" class="normalButton" @click="startEdit">
+                            Editar
+                        </button>
+                    </div>
+
+                    <!-- Formulario de edición -->
+                    <div v-else>
+                        <form @submit.prevent="updatedBook">
+                            <label>Título:</label>
+                            <input type="text" v-model="updateBook.title" required />
+
+                            <label>Descripción:</label>
+                            <textarea v-model="updateBook.descr" required></textarea>
+
+                            <label>
+                                Autor:
+                                <select v-model="updateBook.author" required>
+                                    <option disabled value="">Selecciona un autor</option>
+                                    <option v-for="author in authors" :value="author.name">
+                                        {{ author.name }}
+                                    </option>
+                                </select>
+                            </label>
+                            <label>
+                                Género:
+                                <select v-model="updateBook.genre" required>
+                                    <option disabled value="">Selecciona un genero</option>
+                                    <option v-for="genre in genres" :value="genre.name">
+                                        {{ genre.name }}
+                                    </option>
+                                </select>
+                            </label>
+
+                            <label>Stock:</label>
+                            <input type="number" v-model="updateBook.stock" required />
+
+                            <label>Precio:</label>
+                            <input type="number" step="0.01" v-model="updateBook.price" required />
+
+                            <label>
+                                Código de Moneda:
+                                <input type="text" v-model="updateBook.currency_code" required />
+                            </label>
+
+                            <div style="margin-top: 10px">
+                                <button type="submit" class="normalButton">Guardar</button>
+                                <button type="button" class="delete" @click="cancelEdit">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div v-else>
+                    ( click on a row to see details... )
+                </div>
+            </div>
+            <div v-else>
+                <!-- Formulario para crear un nuevo libro (ahora se oculta/muestra) -->
+                <div style="margin-bottom: 20px">
+                    <h3>Crear nuevo libro</h3>
+                    <form @submit.prevent="createBook">
+                        <label>
+                            Título:
+                            <input type="text" v-model="newBook.title" required />
+                        </label>
+                        <label>
+                            Descripción:
+                            <textarea v-model="newBook.descr"></textarea>
+                        </label>
+                        <label>
+                            Autor:
+                            <select v-model="newBook.author" required>
+                                <option disabled value="">Selecciona un autor</option>
+                                <option v-for="author in authors" :value="author">
+                                    {{ author.name }}
+                                </option>
+                            </select>
+                        </label>
+                        <label>
+                            Género:
+                            <select v-model="newBook.genre" required>
+                                <option disabled value="">Selecciona un genero</option>
+                                <option v-for="genre in genres" :value="genre">
+                                    {{ genre.name }}
+                                </option>
+                            </select>
+                        </label>
+                        <label>
+                            Stock:
+                            <input type="number" v-model="newBook.stock" required />
+                        </label>
+                        <label>
+                            Precio:
+                            <input type="number" step="0.01" v-model="newBook.price" required />
+                        </label>
+                        <label>
+                            Código de Moneda:
+                            <input type="text" v-model="newBook.currency_code" required />
+                        </label>
+                        <button type="submit" class="normalButton">Guardar</button>
+                        <button type="button" class="delete" @click="toggleCreateForm">
+                            Cancelar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script src="app.js"></script>
+
+</html>

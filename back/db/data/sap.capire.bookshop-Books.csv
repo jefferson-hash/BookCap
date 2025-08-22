@@ -1,0 +1,9 @@
+ID,title,descr,author_ID,stock,price,currency_code,genre_ID
+b1aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,The Great Adventure,"An epic journey through unknown lands",170,10,19.99,USD,10aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b2aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Life and Sorrows,"A touching drama about love and loss",150,5,14.50,USD,11aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b3aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Whispers of the Heart,"A collection of heartfelt poems",107,8,9.99,USD,12aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b4aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Dragons of the Night,"A fantasy tale of magic and dragons",101,12,24.99,USD,13aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b5aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,The Silent River,"A dramatic story of human endurance",170,7,16.75,USD,11aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b6aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Poetic Dreams,"Short poems about dreams and imagination",107,15,11.50,USD,12aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b7aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Fantasy Realm,"Adventures in a magical world",101,20,29.99,USD,13aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b8aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Mysterious Island,"A thrilling fiction story on a remote island",150,9,18.00,USD,10aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa

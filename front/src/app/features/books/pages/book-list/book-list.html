@@ -1,0 +1,21 @@
+<div class="cards-container">
+  <input class="Search" type="text" placeholder="Buscar..." (input)="loadBooks($event.target.value)">
+
+  <div class="book-list">
+    <div class="book-card" *ngFor="let book of books">
+      <div class="card-content">
+        <h3 class="card-title">{{ book.title }}</h3>
+        <p class="card-author">**Autor:** {{ book.author }}</p>
+        <p class="card-genre">**Género:** {{ book.genre.name }}</p>
+        <p class="card-price">**Precio:** ${{ book.price }} {{ book.currency_code }}</p>
+      </div>
+      <div class="card-actions" *ngIf="isAdmin">
+        <button class="edit-btn" (click)="editBook(book)">Editar</button>
+        <button class="delete-btn" (click)="deleteBook(book.ID?.toString() ?? '')">Eliminar</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="books.length === 0" class="not-found-message">
+    No se encontraron libros que coincidan con su búsqueda. 😕
+  </div>
+</div>

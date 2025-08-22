@@ -1,0 +1,6 @@
+ID,name,email,phone,password,refreshToken,role_ID,isActive,createdAt,updatedAt
+1e2d3c4b-5a6f-7d8e-9f0a-1b2c3d4e5f6a,Juan Perez,juan.perez@example.com,3001234567,$2b$10$abcd1234efgh5678ijkl90mnopqrstuv,token123,3c4d7e9f-7a5f-4d4f-b3a1-1e9d8f6b5c7d,true,2025-08-19 10:00:00,2025-08-19 10:00:00
+2f3e4d5c-6b7a-8c9d-0e1f-2g3h4i5j6k7l,Maria Lopez,maria.lopez@example.com,3109876543,$2b$10$mnop1234qrst5678uvwx90yzabcdefg,token456,3c4d7e9f-7a5f-4d4f-b3a1-1e9d8f6b5c7d,true,2025-08-19 10:05:00,2025-08-19 10:05:00
+3g4f5e6d-7c8b-9d0e-1f2g-3h4i5j6k7l8m,Carlos Ramirez,carlos.ramirez@example.com,3205554433,$2b$10$xyz1234abcd5678efgh90ijklmnopqr,token789,3c4d7e9f-7a5f-4d4f-b3a1-1e9d8f6b5c7d,true,2025-08-19 10:10:00,2025-08-19 10:10:00
+4h5g6f7e-8d9c-0e1f-2g3h-4i5j6k7l8m9n,Ana Martinez,ana.martinez@example.com,3214443322,$2b$10$qrst1234uvwx5678yzab90cdefghijk,token012,3c4d7e9f-7a5f-4d4f-b3a1-1e9d8f6b5c7d,true,2025-08-19 10:15:00,2025-08-19 10:15:00
+5i6h7g8f-9e0d-1f2g-3h4i-5j6k7l8m9n0o,Luis Gomez,luis.gomez@example.com,3223332211,$2b$10$cdef1234ghij5678klmn90opqrstuvwx,token345,3c4d7e9f-7a5f-4d4f-b3a1-1e9d8f6b5c7d,true,2025-08-19 10:20:00,2025-08-19 10:20:00
