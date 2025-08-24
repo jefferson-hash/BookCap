@@ -4,5 +4,6 @@ import { AUTH_ROUTES } from './auth-module';
 
 @NgModule({
   imports: [RouterModule.forChild(AUTH_ROUTES)],
+    exports: [RouterModule],
 })
 export class AuthRoutingModule {}

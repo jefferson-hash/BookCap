@@ -1,0 +1,101 @@
+/* Contenedor principal para centrar el formulario */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+  font-family: 'Inter', sans-serif;
+  padding: 20px;
+}
+
+/* Estilos de la tarjeta de login */
+.login-card {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.login-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Estilos para el formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Estilos para el botón */
+.login-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para la información del usuario */
+.user-info {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.user-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  color: #28a745;
+}
+
+.user-info p {
+  color: #6c757d;
+  margin: 0;
+}

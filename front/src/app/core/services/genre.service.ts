@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Genre } from '../models/book.model';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class GenreService {
   constructor(private http: HttpClient) {}
 
-  getGenres() {
-    return this.http
-      .get<{ value: any[] }>('/browse/Genres?$select=name')
-      .pipe(map((res) => [...new Set(res.value.map((b) => b.name))]));
+  private apiUrl = 'http://localhost:4004';
+
+  getGenres(): Observable<{ value: Genre[] }> {
+    return this.http.get<{value: Genre[]}>(`${this.apiUrl}/browse/Genres?$select=name`);
   }
 }

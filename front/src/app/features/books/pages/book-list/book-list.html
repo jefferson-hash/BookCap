@@ -1,13 +1,19 @@
 <div class="cards-container">
-  <input class="Search" type="text" placeholder="Buscar..." (input)="loadBooks($event.target.value)">
+  <input
+    class="Search"
+    type="text"
+    placeholder="Buscar..."
+    (input)="loadBooks($event.target.value)"
+  />
 
   <div class="book-list">
     <div class="book-card" *ngFor="let book of books">
-      <div class="card-content">
+      <div class="card-content" (click)="selectBook(book)">
+        <img [src]="book.image" [alt]="'Portada de ' + book.title" class="card-image" />
         <h3 class="card-title">{{ book.title }}</h3>
-        <p class="card-author">**Autor:** {{ book.author }}</p>
-        <p class="card-genre">**Género:** {{ book.genre.name }}</p>
-        <p class="card-price">**Precio:** ${{ book.price }} {{ book.currency_code }}</p>
+        <p class="card-author">Autor: {{ book.author }}</p>
+        <p class="card-genre">Género: {{ book.genre.name }}</p>
+        <p class="card-price">Precio: ${{ book.price }} {{ book.currency_code }}</p>
       </div>
       <div class="card-actions" *ngIf="isAdmin">
         <button class="edit-btn" (click)="editBook(book)">Editar</button>
@@ -19,3 +25,16 @@
     No se encontraron libros que coincidan con su búsqueda. 😕
   </div>
 </div>
+
+<app-book-detail
+  *ngIf="selectedBook && modalMode === 'detail'"
+  [book]="selectedBook"
+  (closeModal)="closeModal()"
+></app-book-detail>
+
+<app-book-edit
+  *ngIf="selectedBook && modalMode === 'edit'"
+  [book]="selectedBook"
+  (save)="onSave($event)"
+  (close)="closeModal()"
+></app-book-edit>

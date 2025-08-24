@@ -5,7 +5,8 @@ export default async function createBook(req: any) {
 
   const { Genres, Books, Authors } = cds.entities("sap.capire.bookshop");
 
-  let { title, descr, genre, author, stock, price, currency_code } = req.data;
+  let { title, descr, genre, author, stock, price, imageUrl, currency_code } =
+    req.data;
 
   // role extracted from the token
   const roleId = req.user?.role;
@@ -45,9 +46,10 @@ export default async function createBook(req: any) {
       author_ID: authorRoleRow.ID,
       genre_ID: genreRow.ID,
       stock: stock,
+      image: imageUrl,
       price: price,
       currency: { code: currency_code },
-    }),
+    })
   );
 
   return `Book '${title}' created successfully.`;

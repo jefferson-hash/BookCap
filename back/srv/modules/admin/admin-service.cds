@@ -11,11 +11,13 @@ service AdminService @(path: '/browse') {
             createdBy,
             modifiedBy
         };
+
     @readonly
     entity Authors     as
         projection on my.Authors {
             *,
-            books : redirected to Books on books.author = $self.ID
+            books : redirected to Books
+                        on books.author = $self.ID
         }
         excluding {
             createdBy,
@@ -35,15 +37,17 @@ service AdminService @(path: '/browse') {
                       genre: String,
                       stock: Integer,
                       price: Decimal,
+                      image: String,
                       currency_code: String)              returns String;
 
-    action updateBook (idBook: String,
+    action updateBook(idBook: String,
                       title: String,
                       author: String,
                       descr: String,
                       genre: String,
                       stock: Integer,
                       price: Decimal,
+                      image: String,
                       currency_code: String)              returns String;
 
     action deleteBook(idBook: String)                     returns String;

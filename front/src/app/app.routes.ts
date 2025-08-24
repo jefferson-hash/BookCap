@@ -12,17 +12,17 @@ export const routes: Routes = [
       import('./features/books/books-routing-module').then((m) => m.BooksRoutingModule),
   },
   {
-    path: 'orders',
+    path: 'authors',
     loadChildren: () =>
-      import('./features/orders/orders-routing-module').then((m) => m.OrdersRoutingModule),
+      import('./features/books copy/authors-routing-module').then((m) => m.AuthorsRoutingModule),
   },
   {
     path: '',
-    redirectTo: 'books',
+    redirectTo: 'auth/login',
     pathMatch: 'full',
   },
   {
     path: '**',
-    redirectTo: 'books',
+    redirectTo: 'auth/login',
   },
 ];

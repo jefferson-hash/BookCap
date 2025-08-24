@@ -7,8 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class BookService {
-  private apiUrl = "http://localhost:4004";
-
+  private apiUrl = 'http://localhost:4004';
 
   constructor(private http: HttpClient) {}
 
@@ -18,8 +17,10 @@ export class BookService {
     );
   }
 
-  getBookDetail(id: number) {
-    return this.http.get<Book>(`${this.apiUrl}/browse/Books/${id}?$select=descr,stock`);
+  getBookDetail(id: string) {
+    return this.http.get<Book>(
+      `${this.apiUrl}/browse/Books/${id}?$select=title,author,descr,image,price,stock&$expand=genre($select=name),currency($select=code,name)`
+    );
   }
 
   createBook(book: Book) {

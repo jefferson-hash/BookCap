@@ -14,6 +14,7 @@ entity Books : managed {
       genre    : Association to Genres;
       stock    : Integer;
       price    : Price;
+      image    : String(1111);
       currency : Currency;
 }
 

@@ -1,9 +1,9 @@
-ID,title,descr,author_ID,stock,price,currency_code,genre_ID
-b1aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,The Great Adventure,"An epic journey through unknown lands",170,10,19.99,USD,10aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-b2aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Life and Sorrows,"A touching drama about love and loss",150,5,14.50,USD,11aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-b3aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Whispers of the Heart,"A collection of heartfelt poems",107,8,9.99,USD,12aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-b4aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Dragons of the Night,"A fantasy tale of magic and dragons",101,12,24.99,USD,13aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-b5aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,The Silent River,"A dramatic story of human endurance",170,7,16.75,USD,11aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-b6aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Poetic Dreams,"Short poems about dreams and imagination",107,15,11.50,USD,12aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-b7aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Fantasy Realm,"Adventures in a magical world",101,20,29.99,USD,13aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-b8aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Mysterious Island,"A thrilling fiction story on a remote island",150,9,18.00,USD,10aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+ID,title,descr,author_ID,stock,price,image,currency_code,genre_ID
+b1aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,The Great Adventure,"An epic journey through unknown lands",170,10,19.99,https://images.cdn2.buscalibre.com/fit-in/360x360/2e/9f/2e9fd9e0c1afcb06c2774ab6a4fae09c.jpg,USD,10aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b2aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Life and Sorrows,"A touching drama about love and loss",150,5,14.50,https://images.cdn1.buscalibre.com/fit-in/360x360/0d/2e/6e51be37a698aa441e580f7c7b55e286.jpg,USD,11aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b3aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Whispers of the Heart,"A collection of heartfelt poems",107,8,9.99,https://images.cdn3.buscalibre.com/fit-in/360x360/7b/11/7b119ffa3fcd5836d439ade8ce07d7c7.jpg,USD,12aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b4aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Dragons of the Night,"A fantasy tale of magic and dragons",101,12,24.99,https://images.cdn2.buscalibre.com/fit-in/360x360/1a/62/1a62565892114db2114a0ab53792d041.jpg,USD,13aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b5aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,The Silent River,"A dramatic story of human endurance",170,7,16.75,https://images.cdn2.buscalibre.com/fit-in/360x360/e7/ac/e7acd62c33dac29d29c3ef15d4ce373e.jpg,USD,11aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b6aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Poetry of your Dreams,"Short poems about dreams and imagination",107,15,11.50,https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1618224906i/57717837.jpg,USD,12aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b7aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Fantasy Realm,"Adventures in a magical world",101,20,29.99,https://www.blackgate.com/wp-content/uploads/2022/12/Realms-of-Fantasy-October-1998-Luis-Royo2-min.jpg,USD,13aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+b8aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Mysterious Island,"A thrilling fiction story on a remote island",150,9,18.00,https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781665934299/the-mysterious-island-9781665934299_hr.jpg,USD,10aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa

@@ -7,6 +7,7 @@ export interface Book {
   author: string | { name: string };
   stock: number;
   price: number;
+  image: string;
   currency_code: string;
 }
 
