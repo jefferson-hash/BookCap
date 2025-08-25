@@ -11,7 +11,7 @@ export default async function refreshTokenHandler(req: any) {
   const refreshToken = cookies?.["refresh-token"];
 
   if (!refreshToken) {
-    return req.error(401, "Refresh token is missing");
+    return null;
   }
 
   const decodedObj = verifyRefreshToken(refreshToken);
@@ -20,7 +20,7 @@ export default async function refreshTokenHandler(req: any) {
   }
 
   const user = await cds.run(
-    SELECT.one.from(Users).where({ ID: decodedObj.ID, refreshToken }),
+    SELECT.one.from(Users).where({ ID: decodedObj.ID, refreshToken })
   );
 
   if (!user) {
@@ -40,5 +40,5 @@ export default async function refreshTokenHandler(req: any) {
     maxAge: 900000, // 15 minutes
   });
 
-  return { message: "Access token refreshed successfully" };
+  return newAccessToken;
 }

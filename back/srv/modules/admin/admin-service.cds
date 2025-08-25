@@ -37,7 +37,7 @@ service AdminService @(path: '/browse') {
                       genre: String,
                       stock: Integer,
                       price: Decimal,
-                      image: String,
+                      imageUrl: String,
                       currency_code: String)              returns String;
 
     action updateBook(idBook: String,
@@ -47,7 +47,7 @@ service AdminService @(path: '/browse') {
                       genre: String,
                       stock: Integer,
                       price: Decimal,
-                      image: String,
+                      imageUrl: String,
                       currency_code: String)              returns String;
 
     action deleteBook(idBook: String)                     returns String;

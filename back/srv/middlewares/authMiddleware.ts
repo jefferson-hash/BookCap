@@ -8,10 +8,14 @@ export async function validateAuthToken(req: any) {
 
     if (!authToken) {
       // No hay token -> intento refrescar
+      
       authToken = await refreshTokenHandler(req);
       if (!authToken) {
+        console.log("Authorization token missing", authToken);
+
         return req.error(401, "Authorization token missing");
       }
+      console.log("Token refreshed successfully", authToken);
     }
 
     // Verificamos el token actual o el renovado

@@ -20,6 +20,9 @@
         </p>
         <p class="book-stock"><strong>Stock:</strong> {{ book.stock }}</p>
       </div>
+      <div class="order-section">
+        <input type="number" min="1" value="1" class="quantity-input" #quantityInput />
+        <button class="order-btn" (click)="orderBook(book.ID ?? '', +quantityInput.value)">Ordenar</button>
     </div>
   </div>
 

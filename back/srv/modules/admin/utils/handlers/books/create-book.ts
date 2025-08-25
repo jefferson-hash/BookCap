@@ -8,6 +8,9 @@ export default async function createBook(req: any) {
   let { title, descr, genre, author, stock, price, imageUrl, currency_code } =
     req.data;
 
+    console.log("req.data create book", req.data);
+    
+
   // role extracted from the token
   const roleId = req.user?.role;
 
@@ -46,7 +49,7 @@ export default async function createBook(req: any) {
       author_ID: authorRoleRow.ID,
       genre_ID: genreRow.ID,
       stock: stock,
-      image: imageUrl,
+      imageUrl: imageUrl,
       price: price,
       currency: { code: currency_code },
     })

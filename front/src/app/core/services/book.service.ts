@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book } from '../models/book.model';
+import { Book, BookUpdate } from '../models/book.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,25 +13,33 @@ export class BookService {
 
   getBooks(search: string = ''): Observable<{ value: Book[] }> {
     return this.http.get<{ value: Book[] }>(
-      `${this.apiUrl}/browse/ListOfBooks?$expand=genre($select=name),currency($select=code,name)${search}`
+      `${this.apiUrl}/browse/ListOfBooks?$expand=genre($select=name),currency($select=code,name)${search}`,
+      { withCredentials: true }
     );
   }
 
   getBookDetail(id: string) {
     return this.http.get<Book>(
-      `${this.apiUrl}/browse/Books/${id}?$select=title,author,descr,image,price,stock&$expand=genre($select=name),currency($select=code,name)`
+      `${this.apiUrl}/browse/Books/${id}?$select=title,author,descr,imageUrl,price,stock,currency_code&$expand=genre($select=name)`,
+      { withCredentials: true }
     );
   }
 
-  createBook(book: Book) {
-    return this.http.post<Book>(`${this.apiUrl}/browse/createBook`, book);
+  createBook(book: BookUpdate) {
+    return this.http.post<BookUpdate>(`${this.apiUrl}/browse/createBook`, book, {
+      withCredentials: true,
+    });
   }
 
-  updateBook(book: Book) {
-    return this.http.post(`${this.apiUrl}/browse/updateBook`, book);
+  updateBook(book: BookUpdate) {
+    return this.http.post(`${this.apiUrl}/browse/updateBook`, book, { withCredentials: true });
   }
 
   deleteBook(idBook: string) {
-    return this.http.post(`${this.apiUrl}/browse/deleteBook`, { idBook });
+    return this.http.post(
+      `${this.apiUrl}/browse/deleteBook`,
+      { idBook },
+      { withCredentials: true }
+    );
   }
 }

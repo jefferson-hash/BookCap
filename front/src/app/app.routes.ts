@@ -14,15 +14,15 @@ export const routes: Routes = [
   {
     path: 'authors',
     loadChildren: () =>
-      import('./features/books copy/authors-routing-module').then((m) => m.AuthorsRoutingModule),
+      import('./features/authors/authors-routing-module').then((m) => m.AuthorsRoutingModule),
   },
   {
     path: '',
-    redirectTo: 'auth/login',
+    redirectTo: 'books',
     pathMatch: 'full',
   },
   {
     path: '**',
-    redirectTo: 'auth/login',
+    redirectTo: 'books',
   },
 ];

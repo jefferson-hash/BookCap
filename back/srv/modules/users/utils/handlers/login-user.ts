@@ -11,7 +11,6 @@ export default async function loginHandler(req: any) {
   const { Users } = entities;
 
   const { email, password } = req.data || req.body;
-  console.log("Body recibido:", req.body);
   if (!email || !password) {
     return req.error(400, "Email and password are required");
   }

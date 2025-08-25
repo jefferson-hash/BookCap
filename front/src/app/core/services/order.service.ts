@@ -6,7 +6,13 @@ import { Order } from '../models/order.model';
 export class OrderService {
   constructor(private http: HttpClient) {}
 
-  submitOrder(bookId: number, quantity: number) {
-    return this.http.post<Order>('/browse/submitOrder', { book: bookId, quantity });
+  private apiUrl = 'http://localhost:4004';
+
+  submitOrder(bookId: string, quantity: number) {
+    return this.http.post<Order>(
+      `${this.apiUrl}/browse/submitOrder`,
+      { book: bookId, quantity },
+      { withCredentials: true }
+    );
   }
 }

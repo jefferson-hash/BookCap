@@ -1,20 +1,24 @@
 <div class="cards-container">
-  <input
-    class="Search"
-    type="text"
-    placeholder="Buscar..."
-    (input)="loadBooks($event.target.value)"
-  />
+  <div class="header-search">
+    <input class="Search" type="text" placeholder="Buscar..." (input)="loadBooks($event.target.value)" />
+    <button class="add-book-btn" *ngIf="isAdmin" (click)="addBook()">Agregar Libro</button>
+    <button class="add-book-btn" *ngIf="isAdmin" (click)="addBook()">Agregar Autor</button>
+  </div>
 
   <div class="book-list">
     <div class="book-card" *ngFor="let book of books">
       <div class="card-content" (click)="selectBook(book)">
-        <img [src]="book.image" [alt]="'Portada de ' + book.title" class="card-image" />
+        <img [src]="book.imageUrl" [alt]="'Portada de ' + book.title" class="card-image" />
         <h3 class="card-title">{{ book.title }}</h3>
         <p class="card-author">Autor: {{ book.author }}</p>
         <p class="card-genre">Género: {{ book.genre.name }}</p>
         <p class="card-price">Precio: ${{ book.price }} {{ book.currency_code }}</p>
       </div>
+      <div class="order">
+        <input type="number" min="1" value="1" class="quantity-input" #quantityInput />
+        <button class="order-btn" (click)="orderBook(book.ID ?? '', +quantityInput.value)">Ordenar</button>
+      </div>
+
       <div class="card-actions" *ngIf="isAdmin">
         <button class="edit-btn" (click)="editBook(book)">Editar</button>
         <button class="delete-btn" (click)="deleteBook(book.ID?.toString() ?? '')">Eliminar</button>
@@ -26,15 +30,10 @@
   </div>
 </div>
 
-<app-book-detail
-  *ngIf="selectedBook && modalMode === 'detail'"
-  [book]="selectedBook"
-  (closeModal)="closeModal()"
-></app-book-detail>
+<app-book-detail *ngIf="selectedBook && modalMode === 'detail'" [book]="selectedBook"
+  (closeModal)="closeModal()"></app-book-detail>
 
-<app-book-edit
-  *ngIf="selectedBook && modalMode === 'edit'"
-  [book]="selectedBook"
-  (save)="onSave($event)"
-  (close)="closeModal()"
-></app-book-edit>
+<app-book-edit *ngIf="selectedBook && modalMode === 'edit'" [book]="selectedBook" (save)="onSaveBook($event)"
+  (close)="closeModal()"></app-book-edit>
+
+<app-book-create *ngIf="modalMode === 'create'" (save)="onCreate($event)" (close)="closeModal()"></app-book-create>

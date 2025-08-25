@@ -1,0 +1,31 @@
+<div class="container-author">
+    <div class="header-search">
+        <input class="Search" type="text" placeholder="Buscar..." (input)="loadAuthors($event.target.value)" />
+    </div>
+    <div class="author-list">
+        <div class="author-card" *ngFor="let author of author">
+            <div class="card-header">
+                <img [src]="author.imageUrl" alt="Foto de {{ author.name }}" class="author-image" />
+            </div>
+            <div class="card-body">
+                <h3 class="author-name">{{ author.name }}</h3>
+                <p class="author-bio">{{ author.biography }}</p>
+                <div class="author-details">
+                    <p class="detail-item">
+                        <strong>Nacimiento:</strong> {{ author.dateOfBirth }} en {{ author.placeOfBirth }}
+                    </p>
+                    <p class="detail-item">
+                        <strong>Fallecimiento:</strong> {{ author.dateOfDeath }} en {{ author.placeOfDeath }}
+                    </p>
+                </div>
+                <div class="card-actions" *ngIf="isAdmin">
+                    <button class="edit-btn" >Editar</button>
+                    <button class="delete-btn" >Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="author.length === 0" class="not-found-message">
+        No se encontraron autores que coincidan con su búsqueda. 😕
+    </div>
+</div>

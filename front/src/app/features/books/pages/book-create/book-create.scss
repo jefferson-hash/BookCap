@@ -1,0 +1,127 @@
+/* book-edit.scss */
+
+/* Fondo oscuro detrás del modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px;
+  overflow-y: auto; /* Para que no se corte en pantallas muy pequeñas */
+}
+
+/* Contenido del modal */
+.modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 30rem; /* antes 450px */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  margin: auto;
+}
+
+/* Ajustes de título */
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+/* Estilos para etiquetas y campos */
+.form-label {
+  display: block;
+  font-weight: 500;
+  color: #555;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: #fff;
+}
+
+.form-textarea {
+  min-height: 60px;
+  max-height: 80px;
+  resize: vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+/* Contenedor de botones */
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Botones */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-save {
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+.btn-save:hover {
+  background-color: #3849a5;
+  box-shadow: 0 3px 8px rgba(63, 81, 181, 0.2);
+}
+
+.btn-cancel {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  background-color: #c6392f;
+  box-shadow: 0 3px 8px rgba(244, 67, 54, 0.2);
+}
+
+/* Responsive: para pantallas pequeñas */
+@media (max-width: 480px) {
+  .modal {
+    max-width: 95%; /* ocupa casi todo el ancho */
+    padding: 15px;
+  }
+
+  .modal-title {
+    font-size: 1.3rem;
+  }
+
+  .btn {
+    flex: 1; /* botones ocupan mismo ancho */
+  }
+}

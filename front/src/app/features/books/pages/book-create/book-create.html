@@ -1,1 +1,41 @@
-<p>book-create works!</p>
+<div class="modal-backdrop">
+    <div class="modal">
+        <h2 class="modal-title">Crear Libro</h2>
+
+        <label class="form-label">Título</label>
+        <input class="form-input" [(ngModel)]="createBook.title" placeholder="Ingrese el titulo..." />
+
+        <label class="form-label">Url Portada</label>
+        <input class="form-input" [(ngModel)]="createBook.imageUrl" placeholder="https://imageexamle...." />
+
+        <label class="form-label">Autor</label>
+        <select class="form-select" [(ngModel)]="createBook.author">
+            <option disabled value="" >Seleccione un autor</option>
+            <option *ngFor="let a of authors" [ngValue]="a">{{ a.name }}</option>
+        </select>
+
+        <label class="form-label">Género</label>
+        <select class="form-select" [(ngModel)]="createBook.genre">
+            <option disabled value="">Seleccione un género</option>
+            <option *ngFor="let g of genres" [ngValue]="g">{{ g.name }}</option>
+        </select>
+
+        <label class="form-label">Descripción</label>
+        <textarea class="form-textarea" [(ngModel)]="createBook.descr"
+            placeholder="Una aventura example...."></textarea>
+
+        <label class="form-label">Precio</label>
+        <input type="number" min="1" [(ngModel)]="createBook.price" class="form-input" />
+
+        <label class="form-label">Stock</label>
+        <input type="number" min="1" [(ngModel)]="createBook.stock" class="form-input" />
+
+        <label class="form-label">Moneda</label>
+        <input type="text" [(ngModel)]="createBook.currency_code" placeholder="USD, YEN, EUR..." class="form-input" />
+
+        <div class="actions">
+            <button (click)="create()" class="btn btn-save">Crear</button>
+            <button (click)="onClose()" class="btn btn-cancel">Cancelar</button>
+        </div>
+    </div>
+</div>

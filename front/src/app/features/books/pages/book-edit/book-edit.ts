@@ -15,7 +15,7 @@ import { Author } from '../../../../core/models/authors.model';
   styleUrl: './book-edit.scss',
 })
 export class BookEditComponent {
-  @Input() book!: Book; // 👈 recibe el libro
+  @Input() book!: Book;
   @Output() save = new EventEmitter<Book>();
   @Output() close = new EventEmitter<void>();
   editableBook!: Book;

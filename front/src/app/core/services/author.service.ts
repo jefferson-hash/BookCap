@@ -8,7 +8,9 @@ export class AuthorService {
   constructor(private http: HttpClient) {}
   private apiUrl = 'http://localhost:4004';
 
-  getAuthors(): Observable<{ value: Author[] }> {
-    return this.http.get<{ value: Author[] }>(`${this.apiUrl}/browse/Authors?$select=name`);
+  getAuthors(search: string = ''): Observable<{ value: Author[] }> {
+    return this.http.get<{ value: Author[] }>(`${this.apiUrl}/browse/Authors${search}`, {
+      withCredentials: true,
+    });
   }
 }

@@ -63,7 +63,7 @@ export default async function updateBook(req: any) {
   if (authorRow) updateData.author_ID = authorRow.ID;
   if (stock !== undefined) updateData.stock = stock;
   if (price !== undefined) updateData.price = price;
-  if (imageUrl) updateData.image = imageUrl;
+  if (imageUrl) updateData.imageUrl = imageUrl;
   if (currency_code) updateData.currency_code = currency_code;
 
   await cds.run(UPDATE(Books).set(updateData).where({ ID: idBook }));

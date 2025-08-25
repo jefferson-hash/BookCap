@@ -137,3 +137,73 @@
   color: #000;
   transform: scale(1.1);
 }
+
+/* Sección de orden en el modal de detalle */
+.order-section {
+  display: flex; /* Alinea los elementos en una fila */
+  align-items: center; /* Centra los elementos verticalmente */
+  gap: 15px; /* Espacio entre el campo de cantidad y el botón */
+  margin-top: 25px; /* Espacio superior para separarlo de los otros detalles del libro */
+}
+
+/* Estilos para el campo de cantidad */
+.quantity-input {
+  width: 80px; /* Ancho fijo para el input */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center; /* Centra el número */
+  appearance: textfield; /* Standard property for compatibility */
+  -moz-appearance: textfield; /* Oculta las flechas de los navegadores de Firefox */
+}
+
+/* Oculta las flechas de los navegadores de Chrome, Safari y Edge */
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Estilos para el botón de ordenar */
+.order-btn {
+  flex-grow: 1; /* Permite que el botón ocupe el espacio restante */
+  padding: 12px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.order-btn:hover {
+  background-color: #218838;
+}
+
+/* Personaliza el scroll solo dentro del modal */
+.modal-content {
+  overflow-y: auto;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #ccc transparent; /* Firefox */
+}
+
+/* Para Chrome, Edge, Safari */
+.modal-content::-webkit-scrollbar {
+  width: 8px; /* Grosor de la barra */
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent; /* Fondo del track */
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #aaa; /* Color de la barra */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: #888; /* Más oscuro al pasar el mouse */
+}

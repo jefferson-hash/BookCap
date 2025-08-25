@@ -1,4 +1,4 @@
-ID,title,descr,author_ID,stock,price,image,currency_code,genre_ID
+ID,title,descr,author_ID,stock,price,imageUrl,currency_code,genre_ID
 b1aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,The Great Adventure,"An epic journey through unknown lands",170,10,19.99,https://images.cdn2.buscalibre.com/fit-in/360x360/2e/9f/2e9fd9e0c1afcb06c2774ab6a4fae09c.jpg,USD,10aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
 b2aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Life and Sorrows,"A touching drama about love and loss",150,5,14.50,https://images.cdn1.buscalibre.com/fit-in/360x360/0d/2e/6e51be37a698aa441e580f7c7b55e286.jpg,USD,11aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
 b3aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Whispers of the Heart,"A collection of heartfelt poems",107,8,9.99,https://images.cdn3.buscalibre.com/fit-in/360x360/7b/11/7b119ffa3fcd5836d439ade8ce07d7c7.jpg,USD,12aaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa

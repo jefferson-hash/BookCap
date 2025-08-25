@@ -14,17 +14,19 @@ entity Books : managed {
       genre    : Association to Genres;
       stock    : Integer;
       price    : Price;
-      image    : String(1111);
+      imageUrl : String(1111);
       currency : Currency;
 }
 
 entity Authors : managed {
   key ID           : UUID;
       name         : String(111) @mandatory;
+      imageUrl     : String(1111);
       dateOfBirth  : Date;
       dateOfDeath  : Date;
       placeOfBirth : String;
       placeOfDeath : String;
+      biography    : String(4000);
       books        : Association to many Books
                        on books.author = $self;
 }

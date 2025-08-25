@@ -1,17 +1,30 @@
+import { Author } from "./authors.model";
+
 export interface Book {
-  ID?: number;
-  idBook?: string;
+  ID?: string;
   title: string;
   descr: string;
   genre: Genre;
-  author: string | { name: string };
+  author: Author ;
   stock: number;
   price: number;
-  image: string;
+  imageUrl: string;
   currency_code: string;
 }
 
 export interface Genre {
-  ID: string;
-  name: string;
+  ID?: string;
+  name?: string;
 }
+
+export interface BookUpdate {
+  idBook?: string;
+  title: string;
+  descr: string;
+  genre: string;
+  author: string | { name: string };
+  stock: number;
+  price: number;
+  imageUrl: string;
+  currency_code: string;
+} 
