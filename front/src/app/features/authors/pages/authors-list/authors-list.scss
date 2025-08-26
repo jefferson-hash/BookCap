@@ -44,14 +44,19 @@
   font-weight: bold;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-author-btn:hover {
+  background-color: #303f9f;
+  transform: scale(1.03);
 }
 
 .author-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 3rem;
-  width: 100%;
+  width: 95%;
 }
 
 .author-card {
@@ -60,11 +65,11 @@
   border-radius: 1rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .author-card:hover {
-  transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
+  transform: scale(1.02);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
@@ -85,7 +90,7 @@
 }
 
 .author-card:hover .author-image {
-  transform: scale(1.05); /* Zoom sutil al pasar el ratón */
+  transform: scale(1.03); /* Zoom sutil al pasar el ratón */
 }
 
 /* Contenido del cuerpo de la tarjeta */
@@ -136,25 +141,29 @@
     border-radius: 4px;
     font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease-in-out;
   }
 
   .edit-btn {
     background-color: #3f51b5;
     width: 10rem;
     color: #fff;
+    transition: all 0.3s ease-in-out;
   }
 
   .delete-btn {
     background-color: #f44336;
     width: 10rem;
     color: #fff;
+    transition: all 0.3s ease-in-out;
   }
   .edit-btn:hover {
     background-color: #303f9f;
+    transform: scale(1.03);
   }
   .delete-btn:hover {
     background-color: #d32f2f;
+    transform: scale(1.03);
   }
 }
 

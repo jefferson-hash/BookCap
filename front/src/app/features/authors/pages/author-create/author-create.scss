@@ -1,56 +1,35 @@
-/* styles.scss o author-create-modal.component.scss */
-
-/* Fondo oscuro del modal (backdrop) */
 .modal-backdrop {
-  position: fixed; /* Cubre toda la ventana */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
-  display: flex; /* Para centrar el contenido del modal */
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-/* Contenedor principal del modal */
 .modal {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  padding: 30px;
-  width: 90%; /* Ocupa un porcentaje del ancho en pantallas pequeñas */
-  max-width: 700px; /* Ancho máximo en pantallas grandes */
-  position: relative; /* Para posicionar el botón de cierre */
-}
-
-/* Botón de cierre */
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: #777;
-  cursor: pointer;
-  transition: color 0.3s ease;
+  padding: 10px;
+  width: 90%;
+  max-width: 700px;
+  position: relative;
 }
 
 .close-btn:hover {
   color: #333;
 }
 
-/* Estilos del formulario de creación de autor (reutilizando los estilos anteriores) */
 .author-form {
   font-family: Arial, sans-serif;
-  /* background-color: #f9f9f9; Ya está dentro del modal blanco */
-  padding: 20px; /* Reduzco el padding ya que el modal tiene padding */
+  padding: 20px;
   border-radius: 8px;
-  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); Ya está en el modal */
-  /* max-width: 700px; El max-width está en el modal */
-  margin: 0 auto; /* Centra el formulario dentro del modal */
+  margin: 0 auto;
 }
 
 .author-form h2 {
@@ -88,6 +67,7 @@
 
 .author-form .textarea-biography {
   resize: vertical;
+  max-height: 5rem;
 }
 
 .author-form .form-row {
@@ -101,21 +81,74 @@
   margin-bottom: 0;
 }
 
-.author-form .submit-btn {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  background-color: #3f51b5;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+.action-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+
+  .submit-btn {
+    display: block;
+    width: 45%;
+    padding: 12px;
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+  }
+  .cancel-btn {
+    display: block;
+    width: 45%;
+    padding: 12px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .cancel-btn:hover {
+    transform: scale(1.03);
+    background-color: #d32f2f;
+  }
+
+  .submit-btn:hover {
+    transform: scale(1.03);
+    background-color: #303f9f;
+    &:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+  }
 }
 
-.author-form .submit-btn:hover {
-  background-color: #303f9f;
-  transform: translateY(-2px);
+.error-message {
+  position: fixed;
+  color: #e63946; /* Rojo fuerte para errores */
+  font-size: 0.875rem; /* Un poco más pequeño que el texto normal */
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

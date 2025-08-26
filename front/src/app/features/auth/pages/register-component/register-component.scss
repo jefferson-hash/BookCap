@@ -1,0 +1,140 @@
+/* Contenedor principal para centrar el formulario de registro */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Usa min-height para que se adapte al contenido */
+  background-color: #f0f2f5;
+  font-family: 'Inter', sans-serif;
+  padding: 40px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Tarjeta del formulario de registro */
+.register-container h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.register-container form {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+
+.register-container form:hover {
+  box-shadow: 0 0 20px 3px rgba(0, 123, 255, 0.5);
+  transform: scale(1.01);
+}
+
+/* Estilos de los campos de formulario */
+.form-group {
+  margin-bottom: 25px; /* Más espacio entre grupos de campos */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Estilos de los inputs de texto */
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Estilos del contenedor para el input de contraseña */
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  padding-right: 50px; /* Espacio para el botón de ver/ocultar */
+}
+
+.password-input button {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #555;
+  transition: color 0.3s ease;
+  padding: 5px;
+}
+
+.password-input button:hover {
+  color: #000;
+}
+
+/* Estilos del botón de "Registrarse" */
+button[type='submit'] {
+  width: 100%;
+  padding: 15px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type='submit']:hover {
+  background-color: #218838;
+  transform: scale(1.03);
+}
+
+button[type='submit']:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Estilos de los mensajes de error */
+.error-message {
+  margin-top: 8px;
+  color: #e63946;
+  font-size: 0.875rem;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

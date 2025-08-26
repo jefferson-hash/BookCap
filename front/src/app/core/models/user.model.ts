@@ -5,3 +5,11 @@ export interface User {
   phone?: string;
   role?: string;
 }
+
+export interface NewUser {
+  nameUser: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
+}

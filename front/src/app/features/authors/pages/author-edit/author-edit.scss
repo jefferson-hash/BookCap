@@ -1,0 +1,154 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  width: 90%;
+  max-width: 700px;
+  position: relative;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.author-form {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+.author-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #3f51b5;
+}
+
+.author-form .form-group {
+  margin-bottom: 15px;
+}
+
+.author-form .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.author-form .form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.author-form .form-control:focus {
+  outline: none;
+  border-color: #3f51b5;
+  box-shadow: 0 0 5px rgba(63, 81, 181, 0.5);
+}
+
+.author-form .textarea-biography {
+  resize: vertical;
+  max-height: 5rem;
+}
+
+.author-form .form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.author-form .form-row .form-group {
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+
+.action-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+
+  .submit-btn {
+    display: block;
+    width: 45%;
+    padding: 12px;
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+  }
+  .cancel-btn {
+    display: block;
+    width: 45%;
+    padding: 12px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .cancel-btn:hover {
+    transform: scale(1.03);
+    background-color: #d32f2f;
+  }
+
+  .submit-btn:hover {
+    transform: scale(1.03);
+    background-color: #303f9f;
+    &:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.error-message {
+  position: fixed;
+  color: #e63946; /* Rojo fuerte para errores */
+  font-size: 0.875rem; /* Un poco más pequeño que el texto normal */
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

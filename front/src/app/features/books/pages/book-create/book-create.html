@@ -1,41 +1,160 @@
 <div class="modal-backdrop">
-    <div class="modal">
-        <h2 class="modal-title">Crear Libro</h2>
+  <div class="modal">
+    <h2 class="modal-title">Crear Libro</h2>
 
-        <label class="form-label">Título</label>
-        <input class="form-input" [(ngModel)]="createBook.title" placeholder="Ingrese el titulo..." />
+    <form #bookForm="ngForm" novalidate>
+      <div class="container-form">
+        <!-- Título -->
+        <div class="form-group">
+          <label class="form-label">Título</label>
+          <input
+            class="form-input"
+            name="title"
+            [(ngModel)]="createBook.title"
+            placeholder="Ingrese el título..."
+            required
+            minlength="3"
+            #title="ngModel"
+          />
+          <p class="error-message" *ngIf="title.invalid && title.touched">
+            <span *ngIf="title.errors?.['required']">El título es obligatorio.</span>
+            <span *ngIf="title.errors?.['minlength']">Mínimo 3 caracteres.</span>
+          </p>
+        </div>
 
-        <label class="form-label">Url Portada</label>
-        <input class="form-input" [(ngModel)]="createBook.imageUrl" placeholder="https://imageexamle...." />
+        <!-- URL Portada -->
+        <div class="form-group">
+          <label class="form-label">Url Portada</label>
+          <input
+            class="form-input"
+            name="imageUrl"
+            [(ngModel)]="createBook.imageUrl"
+            placeholder="https://imageexample...."
+            required
+            #imageUrl="ngModel"
+          />
+          <p class="error-message" *ngIf="imageUrl.invalid && imageUrl.touched">
+            La URL de la portada es obligatoria.
+          </p>
+        </div>
 
-        <label class="form-label">Autor</label>
-        <select class="form-select" [(ngModel)]="createBook.author">
-            <option disabled value="" >Seleccione un autor</option>
+        <!-- Autor -->
+        <div class="form-group">
+          <label class="form-label">Autor</label>
+          <select
+            class="form-select"
+            name="author"
+            [(ngModel)]="createBook.author"
+            required
+            #author="ngModel"
+          >
+            <option disabled value="">Seleccione un autor</option>
             <option *ngFor="let a of authors" [ngValue]="a">{{ a.name }}</option>
-        </select>
+          </select>
+          <p class="error-message" *ngIf="author.invalid && author.touched">
+            El autor es obligatorio.
+          </p>
+        </div>
 
-        <label class="form-label">Género</label>
-        <select class="form-select" [(ngModel)]="createBook.genre">
+        <!-- Género -->
+        <div class="form-group">
+          <label class="form-label">Género</label>
+          <select
+            class="form-select"
+            name="genre"
+            [(ngModel)]="createBook.genre"
+            required
+            #genre="ngModel"
+          >
             <option disabled value="">Seleccione un género</option>
             <option *ngFor="let g of genres" [ngValue]="g">{{ g.name }}</option>
-        </select>
-
-        <label class="form-label">Descripción</label>
-        <textarea class="form-textarea" [(ngModel)]="createBook.descr"
-            placeholder="Una aventura example...."></textarea>
-
-        <label class="form-label">Precio</label>
-        <input type="number" min="1" [(ngModel)]="createBook.price" class="form-input" />
-
-        <label class="form-label">Stock</label>
-        <input type="number" min="1" [(ngModel)]="createBook.stock" class="form-input" />
-
-        <label class="form-label">Moneda</label>
-        <input type="text" [(ngModel)]="createBook.currency_code" placeholder="USD, YEN, EUR..." class="form-input" />
-
-        <div class="actions">
-            <button (click)="create()" class="btn btn-save">Crear</button>
-            <button (click)="onClose()" class="btn btn-cancel">Cancelar</button>
+          </select>
+          <p class="error-message" *ngIf="genre.invalid && genre.touched">
+            El género es obligatorio.
+          </p>
         </div>
-    </div>
+
+        <!-- Precio -->
+        <div class="form-group">
+          <label class="form-label">Precio</label>
+          <input
+            type="number"
+            min="1"
+            name="price"
+            [(ngModel)]="createBook.price"
+            class="form-input"
+            required
+            #price="ngModel"
+          />
+          <p class="error-message" *ngIf="price.invalid && price.touched">
+            <span *ngIf="price.errors?.['required']">El precio es obligatorio.</span>
+            <span *ngIf="price.errors?.['min']">Debe ser mayor a 0.</span>
+          </p>
+        </div>
+
+        <!-- Stock -->
+        <div class="form-group">
+          <label class="form-label">Stock</label>
+          <input
+            type="number"
+            min="1"
+            name="stock"
+            [(ngModel)]="createBook.stock"
+            class="form-input"
+            required
+            #stock="ngModel"
+          />
+          <p class="error-message" *ngIf="stock.invalid && stock.touched">
+            <span *ngIf="stock.errors?.['required']">El stock es obligatorio.</span>
+            <span *ngIf="stock.errors?.['min']">Debe ser mayor a 0.</span>
+          </p>
+        </div>
+
+        <!-- Moneda -->
+        <div class="form-group">
+          <label class="form-label">Moneda</label>
+          <input
+            type="text"
+            name="currency_code"
+            [(ngModel)]="createBook.currency_code"
+            placeholder="USD, YEN, EUR..."
+            class="form-input"
+            required
+            minlength="3"
+            maxlength="3"
+            #currency="ngModel"
+          />
+          <p class="error-message" *ngIf="currency.invalid && currency.touched">
+            <span *ngIf="currency.errors?.['required']">La moneda es obligatoria.</span>
+            <span *ngIf="currency.errors?.['minlength']">Debe tener 3 letras.</span>
+          </p>
+        </div>
+
+        <!-- Descripción -->
+        <div class="form-group">
+          <label class="form-label">Descripción</label>
+          <textarea
+            class="form-textarea"
+            name="descr"
+            [(ngModel)]="createBook.descr"
+            placeholder="Una aventura..."
+            required
+            minlength="10"
+            #descr="ngModel"
+          ></textarea>
+          <p class="error-message" *ngIf="descr.invalid && descr.touched">
+            <span *ngIf="descr.errors?.['required']">La descripción es obligatoria.</span>
+            <span *ngIf="descr.errors?.['minlength']">Debe tener al menos 10 caracteres.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" (click)="create()" class="btn btn-save" [disabled]="bookForm.invalid">
+          Crear
+        </button>
+        <button type="button" (click)="onClose()" class="btn btn-cancel">Cancelar</button>
+      </div>
+    </form>
+  </div>
 </div>

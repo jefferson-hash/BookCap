@@ -17,7 +17,7 @@
 /* Contenido del modal */
 .modal {
   background: #fff;
-  padding: 20px;
+  padding: 30px;
   border-radius: 14px;
   width: 100%;
   max-width: 30rem; /* antes 450px */
@@ -28,11 +28,16 @@
 
 /* Ajustes de título */
 .modal-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #333;
+  color: #3f51b5;
   text-align: center;
+}
+
+.container-form {
+  display: grid;
+  padding: 10px 0px;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
 }
 
 /* Estilos para etiquetas y campos */
@@ -75,13 +80,13 @@
 .actions {
   margin-top: 20px;
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+  justify-content: space-between;
 }
 
 /* Botones */
 .btn {
   padding: 10px 20px;
+  width: 45%;
   border: none;
   border-radius: 8px;
   font-size: 0.95rem;
@@ -93,11 +98,20 @@
 .btn-save {
   background-color: #3f51b5;
   color: #fff;
+  &:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+  }
 }
 
 .btn-save:hover {
   background-color: #3849a5;
   box-shadow: 0 3px 8px rgba(63, 81, 181, 0.2);
+  transform: scale(1.03);
+  &:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+  }
 }
 
 .btn-cancel {
@@ -108,20 +122,37 @@
 .btn-cancel:hover {
   background-color: #c6392f;
   box-shadow: 0 3px 8px rgba(244, 67, 54, 0.2);
+  transform: scale(1.03);
+}
+
+.error-message {
+  position: fixed;
+  color: #e63946; /* Rojo fuerte para errores */
+  font-size: 0.875rem; /* Un poco más pequeño que el texto normal */
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive: para pantallas pequeñas */
 @media (max-width: 480px) {
   .modal {
     max-width: 95%; /* ocupa casi todo el ancho */
-    padding: 15px;
+    padding: 20px;
   }
 
   .modal-title {
     font-size: 1.3rem;
-  }
-
-  .btn {
-    flex: 1; /* botones ocupan mismo ancho */
   }
 }

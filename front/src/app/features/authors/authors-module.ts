@@ -1,9 +1,8 @@
 import { Routes } from "@angular/router";
 import { AuthorsList } from "./pages/authors-list/authors-list";
-import { AuthGuard } from "../../core/guards/auth.guard";
 
 export const AUTHORS_ROUTES: Routes = [
-  { path: '', component: AuthorsList, canActivate: [AuthGuard] },
+  { path: '', component: AuthorsList },
   // { path: ':id', component: BookDetailComponent, canActivate: [AuthGuard] },
   // { path: 'create', component: BookCreateComponent },
   // { path: ':id/edit', component: BookFromComponent }

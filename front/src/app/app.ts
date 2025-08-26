@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './core/services/auth.service';
 import { MenuComponent } from './shared/components/menu-component/menu-component';
@@ -7,7 +7,7 @@ import { MenuComponent } from './shared/components/menu-component/menu-component
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,MenuComponent, HttpClientModule],
+  imports: [RouterOutlet,MenuComponent, HttpClientModule, RouterModule],
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
 })

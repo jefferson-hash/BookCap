@@ -1,10 +1,9 @@
 <div class="modal-backdrop">
   <div class="modal">
-    <button class="close-btn" (click)="closeModal()">✖</button>
-
-    <form class="author-form" (ngSubmit)="createAuthors(newAuthor)" #authorForm="ngForm">
+    <form class="author-form" (ngSubmit)="createAuthors(newAuthor)" #authorForm="ngForm" novalidate>
       <h2>Crear Nuevo Autor</h2>
 
+      <!-- Nombre -->
       <div class="form-group">
         <label for="name">Nombre:</label>
         <input
@@ -14,10 +13,19 @@
           class="form-control"
           placeholder="Ej: Edgar Allan Poe"
           required
+          minlength="3"
           [(ngModel)]="newAuthor.name"
+          #name="ngModel"
         />
+        <p class="error-message" *ngIf="name.errors?.['required'] && name.touched">
+          El nombre es obligatorio.
+        </p>
+        <p class="error-message" *ngIf="name.errors?.['minlength'] && name.touched">
+          Mínimo 3 caracteres.
+        </p>
       </div>
 
+      <!-- URL de la Imagen -->
       <div class="form-group">
         <label for="imageUrl">URL de la Imagen:</label>
         <input
@@ -26,10 +34,19 @@
           name="imageUrl"
           class="form-control"
           placeholder="https://ejemplo.com/imagen.jpg"
+          required
           [(ngModel)]="newAuthor.imageUrl"
+          #imageUrl="ngModel"
         />
+        <p class="error-message" *ngIf="imageUrl.errors?.['required'] && imageUrl.touched">
+          La URL de la imagen es obligatoria.
+        </p>
+        <p class="error-message" *ngIf="imageUrl.errors?.['url'] && imageUrl.touched">
+          Debe ingresar una URL válida.
+        </p>
       </div>
 
+      <!-- Fechas -->
       <div class="form-row">
         <div class="form-group">
           <label for="dateOfBirth">Fecha de Nacimiento:</label>
@@ -38,9 +55,15 @@
             id="dateOfBirth"
             name="dateOfBirth"
             class="form-control"
+            required
             [(ngModel)]="newAuthor.dateOfBirth"
+            #dateOfBirth="ngModel"
           />
+          <p class="error-message" *ngIf="dateOfBirth.errors?.['required'] && dateOfBirth.touched">
+            La fecha de nacimiento es obligatoria.
+          </p>
         </div>
+
         <div class="form-group">
           <label for="dateOfDeath">Fecha de Fallecimiento:</label>
           <input
@@ -48,11 +71,17 @@
             id="dateOfDeath"
             name="dateOfDeath"
             class="form-control"
+            required
             [(ngModel)]="newAuthor.dateOfDeath"
+            #dateOfDeath="ngModel"
           />
+          <p class="error-message" *ngIf="dateOfDeath.errors?.['required'] && dateOfDeath.touched">
+            La fecha de fallecimiento es obligatoria.
+          </p>
         </div>
       </div>
 
+      <!-- Lugares -->
       <div class="form-row">
         <div class="form-group">
           <label for="placeOfBirth">Lugar de Nacimiento:</label>
@@ -62,9 +91,18 @@
             name="placeOfBirth"
             class="form-control"
             placeholder="Ej: Boston, Massachusetts"
+            required
             [(ngModel)]="newAuthor.placeOfBirth"
+            #placeOfBirth="ngModel"
           />
+          <p
+            class="error-message"
+            *ngIf="placeOfBirth.errors?.['required'] && placeOfBirth.touched"
+          >
+            El lugar de nacimiento es obligatorio.
+          </p>
         </div>
+
         <div class="form-group">
           <label for="placeOfDeath">Lugar de Fallecimiento:</label>
           <input
@@ -72,12 +110,21 @@
             id="placeOfDeath"
             name="placeOfDeath"
             class="form-control"
+            required
             placeholder="Ej: Baltimore, Maryland"
             [(ngModel)]="newAuthor.placeOfDeath"
+            #placeOfDeath="ngModel"
           />
+          <p
+            class="error-message"
+            *ngIf="placeOfDeath.errors?.['required'] && placeOfDeath.touched"
+          >
+            El lugar de fallecimiento es obligatorio.
+          </p>
         </div>
       </div>
 
+      <!-- Biografía -->
       <div class="form-group">
         <label for="biography">Biografía:</label>
         <textarea
@@ -86,11 +133,24 @@
           class="form-control textarea-biography"
           rows="6"
           placeholder="Escribe una breve biografía del autor..."
+          required
+          minlength="10"
           [(ngModel)]="newAuthor.biography"
+          #biography="ngModel"
         ></textarea>
+        <p class="error-message" *ngIf="biography.errors?.['required'] && biography.touched">
+          La biografía es obligatoria.
+        </p>
+        <p class="error-message" *ngIf="biography.errors?.['minlength'] && biography.touched">
+          Mínimo 10 caracteres.
+        </p>
       </div>
 
-      <button type="submit" class="submit-btn">Guardar Autor</button>
+      <!-- Botones -->
+      <div class="action-btn">
+        <button type="submit" class="submit-btn" [disabled]="authorForm.invalid">Guardar</button>
+        <button type="button" (click)="closeModal()" class="cancel-btn">Cancelar</button>
+      </div>
     </form>
   </div>
 </div>

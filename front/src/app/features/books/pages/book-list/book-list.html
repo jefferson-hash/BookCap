@@ -13,14 +13,14 @@
         <p class="card-genre">Género: {{ book.genre.name }}</p>
         <p class="card-price">Precio: ${{ book.price }} {{ book.currency_code }}</p>
       </div>
-      <div class="order">
+      <div class="order" *ngIf="isLoged">
         <input type="number" min="1" value="1" class="quantity-input" #quantityInput />
         <button class="order-btn" (click)="orderBook(book.ID ?? '', +quantityInput.value)">Ordenar</button>
       </div>
 
       <div class="card-actions" *ngIf="isAdmin">
         <button class="edit-btn" (click)="editBook(book)">Editar</button>
-        <button class="delete-btn" (click)="deleteBook(book.ID?.toString() ?? '')">Eliminar</button>
+        <button class="delete-btn" (click)="deleteBook(book.ID?.toString() ?? '', book.title)">Eliminar</button>
       </div>
     </div>
   </div>

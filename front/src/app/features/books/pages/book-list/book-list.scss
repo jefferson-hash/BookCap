@@ -45,19 +45,20 @@
   font-weight: bold;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .add-book-btn:hover {
   background-color: #303f9f;
+  transform: scale(1.03);
 }
 
 /* Estilos de la lista de libros (Grid para responsividad) */
 .book-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 40px;
-  width: 100%;
+  gap: 3rem;
+  width: 95%;
 }
 
 /* Estilos de cada tarjeta de libro */
@@ -81,7 +82,7 @@
 }
 
 .book-card:hover {
-  transform: translateY(-5px);
+  transform: scale(1.02);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
   cursor: pointer;
 }
@@ -122,18 +123,22 @@
     width: 100%;
     background-color: #3f51b5;
     color: #fff;
+    transition: all 0.3s ease-in-out;
   }
 
   .delete-btn {
     width: 100%;
     background-color: #f44336;
     color: #fff;
+    transition: all 0.3s ease-in-out;
   }
   .edit-btn:hover {
     background-color: #303f9f;
+    transform: scale(1.03);
   }
   .delete-btn:hover {
     background-color: #d32f2f;
+    transform: scale(1.03);
   }
 }
 
@@ -167,11 +172,12 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease-in-out;
   }
 
   .order-btn:hover {
     background-color: #218838;
+    transform: scale(1.03);
   }
 }
 

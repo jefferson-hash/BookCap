@@ -7,6 +7,7 @@
   background-color: #f0f2f5;
   font-family: 'Inter', sans-serif;
   padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* Estilos de la tarjeta de login */
@@ -19,6 +20,11 @@
   max-width: 420px;
   text-align: center;
   box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+.login-card:hover {
+  box-shadow: 0 0 20px 3px rgba(0, 123, 255, 0.5);
+  transform: scale(1.01);
 }
 
 .login-title {
@@ -46,6 +52,30 @@
   font-weight: 500;
 }
 
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #555;
+  transition: color 0.3s ease;
+  padding: 5px;
+  z-index: 2;
+}
+.toggle-password-btn:hover {
+  color: #000;
+}
+
 .form-control {
   width: 100%;
   padding: 12px;
@@ -62,22 +92,49 @@
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
 
-/* Estilos para el botón */
-.login-btn {
-  background-color: #007bff;
-  color: #fff;
-  padding: 14px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
+.options {
+  display: flex;
+  gap: 1rem; /* espacio entre botones */
+  justify-content: center;
+  margin-top: 1rem;
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
 
-.login-btn:hover {
-  background-color: #0056b3;
+  /* Botón Ingresar */
+  .btn-login {
+    background-color: #007bff; /* azul */
+    color: white;
+    &:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+  }
+  .btn-login:hover {
+    background-color: #0056b3;
+    transform: scale(1.03);
+    &:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+  }
+
+  /* Botón Registrar */
+  .btn-register {
+    background-color: #28a745; /* verde */
+    color: white;
+  }
+
+  .btn-register:hover {
+    background-color: #1e7e34;
+    transform: scale(1.03);
+  }
 }
 
 /* Estilos para la información del usuario */
@@ -98,4 +155,24 @@
 .user-info p {
   color: #6c757d;
   margin: 0;
+}
+
+.error-message {
+  position: fixed;
+  color: #e63946; /* Rojo fuerte para errores */
+  font-size: 0.875rem; /* Un poco más pequeño que el texto normal */
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

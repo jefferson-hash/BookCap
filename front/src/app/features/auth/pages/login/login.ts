@@ -4,6 +4,7 @@ import { User } from '../../../../core/models/user.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AlertService } from '../../../../core/services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -16,24 +17,44 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
   user: User | null = null;
+  showPassword: boolean = false; // 👈 ahora tienes ver/ocultar contraseña
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alertService: AlertService
+  ) {}
 
   login() {
+    if (!this.email || !this.password) {
+      this.alertService.showError('Debes completar todos los campos ❌');
+      return;
+    }
+
     this.authService.login(this.email, this.password).subscribe({
       next: () => {
-        this.authService.getUserInfo().subscribe((userInfo: any) => {
-          if ('value' in userInfo) {
-            this.user = userInfo.value;
-          } else {
-            console.error('User info does not have a value property:', userInfo);
-          }
+        this.authService.getUserInfo().subscribe({
+          next: (userInfo: any) => {
+            if (userInfo && 'value' in userInfo) {
+              this.user = userInfo.value;
+              this.alertService.showSuccess('Inicio de sesión exitoso ✅');
+              this.router.navigate(['/books']);
+            } else {
+              this.alertService.showError('No se pudo obtener la información del usuario ❌');
+            }
+          },
+          error: () => {
+            this.alertService.showError('Usuario no existe, regístrate primero ⚠️');
+          },
         });
-        this.router.navigate(['/books']);
       },
-      error: (err) => {
-        console.error('Login failed', err);
+      error: () => {
+        this.alertService.showError('Credenciales inválidas. Inténtalo de nuevo ⚠️');
       },
     });
+  }
+
+  registerLoad() {
+    this.router.navigate(['/auth/register']);
   }
 }

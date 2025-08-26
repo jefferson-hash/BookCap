@@ -2,37 +2,160 @@
   <div class="modal">
     <h2 class="modal-title">Editar Libro</h2>
 
-    <label class="form-label">Título</label>
-    <input [(ngModel)]="editableBook.title" class="form-input" />
+    <form #editForm="ngForm" novalidate>
+      <div class="container-form">
+        <!-- Título -->
+        <div class="form-group">
+          <label class="form-label">Título</label>
+          <input
+            [(ngModel)]="editableBook.title"
+            name="title"
+            class="form-input"
+            required
+            minlength="3"
+            #title="ngModel"
+          />
+          <p class="error-message" *ngIf="title.invalid && title.touched">
+            <span *ngIf="title.errors?.['required']">El título es obligatorio.</span>
+            <span *ngIf="title.errors?.['minlength']">Mínimo 3 caracteres.</span>
+          </p>
+        </div>
 
-    <label class="form-label">Url Portada</label>
-    <input [(ngModel)]="editableBook.imageUrl" class="form-input" />
+        <!-- URL Portada -->
+        <div class="form-group">
+          <label class="form-label">Url Portada</label>
+          <input
+            [(ngModel)]="editableBook.imageUrl"
+            name="imageUrl"
+            class="form-input"
+            required
+            #imageUrl="ngModel"
+          />
+          <p class="error-message" *ngIf="imageUrl.invalid && imageUrl.touched">
+            La URL de la portada es obligatoria.
+          </p>
+        </div>
 
-    <label class="form-label">Autor</label>
-    <select [(ngModel)]="editableBook.author" class="form-select">
-      <option *ngFor="let a of authors" [ngValue]="a.name">{{ a.name }}</option>
-    </select>
-    <label class="form-label">Género</label>
-    <select [(ngModel)]="editableBook.genre.name" class="form-select">
-      <option *ngFor="let g of genres" [ngValue]="g.name">{{ g.name }}</option>
-    </select>
+        <!-- Autor -->
+        <div class="form-group">
+          <label class="form-label">Autor</label>
+          <select
+            [(ngModel)]="editableBook.author"
+            name="author"
+            class="form-select"
+            required
+            #author="ngModel"
+          >
+            <option disabled value="">Seleccione un autor</option>
+            <option *ngFor="let a of authors" [ngValue]="a.name">{{ a.name }}</option>
+          </select>
+          <p class="error-message" *ngIf="author.invalid && author.touched">
+            El autor es obligatorio.
+          </p>
+        </div>
 
-    <label class="form-label">Descripción</label>
-    <textarea [(ngModel)]="editableBook.descr" class="form-textarea"></textarea>
+        <!-- Género -->
+        <div class="form-group">
+          <label class="form-label">Género</label>
+          <select
+            [(ngModel)]="editableBook.genre"
+            name="genre"
+            class="form-select"
+            required
+            #genre="ngModel"
+          >
+            <option disabled value="">Seleccione un género</option>
+            <option *ngFor="let g of genres" [ngValue]="g.name">{{ g.name }}</option>
+          </select>
+          <p class="error-message" *ngIf="genre.invalid && genre.touched">
+            El género es obligatorio.
+          </p>
+        </div>
 
-    <label class="form-label">Precio</label>
-    <input type="number" [(ngModel)]="editableBook.price" class="form-input" />
+        <!-- Precio -->
+        <div class="form-group">
+          <label class="form-label">Precio</label>
+          <input
+            type="number"
+            [(ngModel)]="editableBook.price"
+            name="price"
+            class="form-input"
+            required
+            min="1"
+            #price="ngModel"
+          />
+          <p class="error-message" *ngIf="price.invalid && price.touched">
+            <span *ngIf="price.errors?.['required']">El precio es obligatorio.</span>
+            <span *ngIf="price.errors?.['min']">Debe ser mayor a 0.</span>
+          </p>
+        </div>
 
-    <label class="form-label">Stock</label>
-    <input type="number" [(ngModel)]="editableBook.stock" class="form-input" />
+        <!-- Stock -->
+        <div class="form-group">
+          <label class="form-label">Stock</label>
+          <input
+            type="number"
+            [(ngModel)]="editableBook.stock"
+            name="stock"
+            class="form-input"
+            required
+            min="1"
+            #stock="ngModel"
+          />
+          <p class="error-message" *ngIf="stock.invalid && stock.touched">
+            <span *ngIf="stock.errors?.['required']">El stock es obligatorio.</span>
+            <span *ngIf="stock.errors?.['min']">Debe ser mayor a 0.</span>
+          </p>
+        </div>
 
-    <label class="form-label">Moneda</label>
-    <input type="text" [(ngModel)]="editableBook.currency_code" class="form-input" />
+        <!-- Moneda -->
+        <div class="form-group">
+          <label class="form-label">Moneda</label>
+          <input
+            type="text"
+            [(ngModel)]="editableBook.currency_code"
+            name="currency_code"
+            class="form-input"
+            required
+            minlength="3"
+            maxlength="3"
+            #currency="ngModel"
+          />
+          <p class="error-message" *ngIf="currency.invalid && currency.touched">
+            <span *ngIf="currency.errors?.['required']">La moneda es obligatoria.</span>
+            <span *ngIf="currency.errors?.['minlength']">Debe tener 3 letras.</span>
+          </p>
+        </div>
 
+        <!-- Descripción -->
+        <div class="form-group">
+          <label class="form-label">Descripción</label>
+          <textarea
+            [(ngModel)]="editableBook.descr"
+            name="descr"
+            class="form-textarea"
+            required
+            minlength="10"
+            #descr="ngModel"
+          ></textarea>
+          <p class="error-message" *ngIf="descr.invalid && descr.touched">
+            <span *ngIf="descr.errors?.['required']">La descripción es obligatoria.</span>
+            <span *ngIf="descr.errors?.['minlength']">Debe tener al menos 10 caracteres.</span>
+          </p>
+        </div>
+      </div>
 
-    <div class="actions">
-      <button (click)="onSave()" class="btn btn-save">Guardar</button>
-      <button (click)="onClose()" class="btn btn-cancel">Cancelar</button>
-    </div>
+      <div class="actions">
+        <button
+          type="button"
+          (click)="onSave()"
+          class="btn btn-save"
+          [disabled]="editForm.invalid"
+        >
+          Guardar
+        </button>
+        <button type="button" (click)="onClose()" class="btn btn-cancel">Cancelar</button>
+      </div>
+    </form>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, catchError, of, tap } from 'rxjs';
-import { User } from '../models/user.model';
+import { NewUser, User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class AuthService {
       .post<{ user: User }>(
         `${this.apiUrl}/user/login`,
         { email, password },
-        { withCredentials: true } 
+        { withCredentials: true }
       )
       .pipe(
         tap((res) => this.userSubject.next(res.user)),
@@ -30,12 +30,17 @@ export class AuthService {
       );
   }
 
+  registerUser(newUser: NewUser) {
+    return this.http.post<{ newUser: NewUser }>(
+      `${this.apiUrl}/user/register`,
+      newUser ,
+      { withCredentials: true }
+    );
+  }
+
   getUserInfo() {
     return this.http
-      .get<{ value: User[] }>(
-        `${this.apiUrl}/user/me`,
-        { withCredentials: true } 
-      )
+      .get<{ value: User[] }>(`${this.apiUrl}/user/me`, { withCredentials: true })
       .pipe(
         tap((res) => this.userSubject.next(res.value[0])),
         catchError((err) => {
@@ -53,20 +58,12 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.http.post(
-      `${this.apiUrl}/user/refreshToken`,
-      {},
-      { withCredentials: true } 
-    );
+    return this.http.post(`${this.apiUrl}/user/refreshToken`, {}, { withCredentials: true });
   }
 
   logout() {
     return this.http
-      .post(
-        `${this.apiUrl}/user/logout`,
-        {},
-        { withCredentials: true }
-      )
+      .post(`${this.apiUrl}/user/logout`, {}, { withCredentials: true })
       .pipe(tap(() => this.userSubject.next(undefined)));
   }
 }

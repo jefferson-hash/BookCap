@@ -1,1 +1,89 @@
-<p>register-component works!</p>
+<div class="register-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h2>Crear cuenta</h2>
+    <!-- Nombre -->
+    <div class="form-group">
+      <label>Nombre de usuario</label>
+      <input type="text" formControlName="nameUser" placeholder="Pepito Per...." />
+      <p
+        class="error-message"
+        *ngIf="registerForm.get('nameUser')?.touched && registerForm.get('nameUser')?.invalid"
+      >
+        Debes ingresar un nombre válido (mínimo 3 caracteres).
+      </p>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="ejemplo@email.com" />
+      <p
+        class="error-message"
+        *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
+      >
+        Ingresa un correo válido.
+      </p>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="form-group">
+      <label>Teléfono</label>
+      <input type="text" formControlName="phone" placeholder="1234567890" />
+      <p
+        class="error-message"
+        *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid"
+      >
+        Ingresa un número válido (7-10 dígitos).
+      </p>
+    </div>
+
+    <!-- Contraseña -->
+    <div class="form-group">
+      <label>Contraseña</label>
+      <div class="password-input">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          placeholder="******"
+        />
+        <button type="button" (click)="showPassword = !showPassword">
+          {{ showPassword ? 'Ocultar' : 'Ver' }}
+        </button>
+      </div>
+      <p
+        class="error-message"
+        *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid"
+      >
+        La contraseña debe tener mínimo 8 caracteres.
+      </p>
+    </div>
+
+    <!-- Confirmar contraseña -->
+    <div class="form-group">
+      <label>Confirmar contraseña</label>
+      <div class="password-input">
+        <input
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          formControlName="confirmPassword"
+          placeholder="******"
+        />
+        <button
+          type="button"
+          class="transformPassword"
+          (click)="showConfirmPassword = !showConfirmPassword"
+        >
+          {{ showConfirmPassword ? 'Ocultar' : 'Ver' }}
+        </button>
+      </div>
+      <p
+        class="error-message"
+        *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched"
+      >
+        Las contraseñas no coinciden.
+      </p>
+    </div>
+
+    <!-- Botón -->
+    <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+  </form>
+</div>

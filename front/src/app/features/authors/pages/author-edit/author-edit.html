@@ -1,1 +1,117 @@
-<p>author-edit works!</p>
+<div class="modal-backdrop">
+  <div class="modal">
+    <form
+      *ngIf="author"
+      class="author-form"
+      (ngSubmit)="updateAuthor()"
+      #authorForm="ngForm"
+      novalidate
+    >
+      <h2>Editar Autor</h2>
+
+      <!-- Nombre -->
+      <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-control"
+          required
+          minlength="3"
+          [(ngModel)]="author.nameAuthor"
+          #name="ngModel"
+        />
+      </div>
+
+      <!-- URL -->
+      <div class="form-group">
+        <label for="imageUrl">URL de la Imagen:</label>
+        <input
+          type="url"
+          id="imageUrl"
+          name="imageUrl"
+          class="form-control"
+          required
+          [(ngModel)]="author.imageUrl"
+          #imageUrl="ngModel"
+        />
+      </div>
+
+      <!-- Fechas -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dateOfBirth">Fecha de Nacimiento:</label>
+          <input
+            type="date"
+            id="dateOfBirth"
+            name="dateOfBirth"
+            class="form-control"
+            required
+            [(ngModel)]="author.dateOfBirth"
+            #dateOfBirth="ngModel"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="dateOfDeath">Fecha de Fallecimiento:</label>
+          <input
+            type="date"
+            id="dateOfDeath"
+            name="dateOfDeath"
+            class="form-control"
+            [(ngModel)]="author.dateOfDeath"
+            #dateOfDeath="ngModel"
+          />
+        </div>
+      </div>
+
+      <!-- Lugares -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="placeOfBirth">Lugar de Nacimiento:</label>
+          <input
+            type="text"
+            id="placeOfBirth"
+            name="placeOfBirth"
+            class="form-control"
+            required
+            [(ngModel)]="author.placeOfBirth"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="placeOfDeath">Lugar de Fallecimiento:</label>
+          <input
+            type="text"
+            id="placeOfDeath"
+            name="placeOfDeath"
+            class="form-control"
+            [(ngModel)]="author.placeOfDeath"
+          />
+        </div>
+      </div>
+
+      <!-- Biografía -->
+      <div class="form-group">
+        <label for="biography">Biografía:</label>
+        <textarea
+          id="biography"
+          name="biography"
+          class="form-control"
+          rows="6"
+          required
+          minlength="10"
+          [(ngModel)]="author.biography"
+        ></textarea>
+      </div>
+
+      <div class="action-btn">
+        <button type="submit" class="submit-btn" [disabled]="authorForm.invalid">
+          Guardar Cambios
+        </button>
+        <button type="button" (click)="onClose()" class="cancel-btn">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
