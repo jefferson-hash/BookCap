@@ -1,7 +1,7 @@
 /* Estilos del contenedor principal de la tarjeta */
 .container-author {
   font-family: Arial, sans-serif;
-  padding: 20px;
+  padding: 1.5rem;
   min-height: 25rem;
   display: flex;
   flex-direction: column;
@@ -33,23 +33,34 @@
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
+.add-author-btn {
+  flex-shrink: 0;
+  padding: 12px 20px;
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+
 .author-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 5rem;
+  gap: 3rem;
   width: 100%;
 }
 
 .author-card {
-  font-family: Arial, sans-serif;
   width: 100%;
-  max-width: 350px; /* Limita el ancho de la tarjeta en pantallas grandes */
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 1rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Asegura que la imagen no se desborde */
+  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 20px;
 }
 
 .author-card:hover {

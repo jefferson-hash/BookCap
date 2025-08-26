@@ -2,7 +2,6 @@
   <div class="header-search">
     <input class="Search" type="text" placeholder="Buscar..." (input)="loadBooks($event.target.value)" />
     <button class="add-book-btn" *ngIf="isAdmin" (click)="addBook()">Agregar Libro</button>
-    <button class="add-book-btn" *ngIf="isAdmin" (click)="addBook()">Agregar Autor</button>
   </div>
 
   <div class="book-list">

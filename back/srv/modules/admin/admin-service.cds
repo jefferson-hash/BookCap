@@ -64,6 +64,8 @@ service AdminService @(path: '/browse') {
 
 
     action createAuthor(nameAuthor: String,
+                        imageUrl: String,
+                        biography: String,
                         dateOfBirth: Date,
                         dateOfDeath: Date,
                         placeOfBirth: String,
@@ -73,6 +75,8 @@ service AdminService @(path: '/browse') {
 
     action updateAuthor(idAuthor: String,
                         nameAuthor: String,
+                        imageUrl: String,
+                        biography: String,
                         dateOfBirth: Date,
                         dateOfDeath: Date,
                         placeOfBirth: String,

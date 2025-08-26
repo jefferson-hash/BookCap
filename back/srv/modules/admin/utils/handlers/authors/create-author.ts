@@ -5,8 +5,15 @@ export default async function createAuthor(req: any) {
 
   const { Authors } = cds.entities("sap.capire.bookshop");
 
-  let { nameAuthor, dateOfBirth, dateOfDeath, placeOfBirth, placeOfDeath } =
-    req.data;
+  let {
+    nameAuthor,
+    imageUrl,
+    biography,
+    dateOfBirth,
+    dateOfDeath,
+    placeOfBirth,
+    placeOfDeath,
+  } = req.data;
 
   // role extracted from the token
   const roleId = req.user?.role;
@@ -39,10 +46,12 @@ export default async function createAuthor(req: any) {
     INSERT.into(Authors).entries({
       name: nameAuthor,
       dateOfBirth,
+      imageUrl,
+      biography,
       dateOfDeath,
       placeOfBirth,
       placeOfDeath,
-    }),
+    })
   );
 
   return `Author '${nameAuthor}' created successfully.`;

@@ -1,6 +1,8 @@
 <div class="container-author">
     <div class="header-search">
         <input class="Search" type="text" placeholder="Buscar..." (input)="loadAuthors($event.target.value)" />
+            <button class="add-author-btn" *ngIf="isAdmin" (click)="addAuthor()">Agregar Autor</button>
+
     </div>
     <div class="author-list">
         <div class="author-card" *ngFor="let author of author">
@@ -29,3 +31,5 @@
         No se encontraron autores que coincidan con su búsqueda. 😕
     </div>
 </div>
+
+<app-author-create *ngIf="modalMode === 'create'" (close)="closeModal()"></app-author-create>

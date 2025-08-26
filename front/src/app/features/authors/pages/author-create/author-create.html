@@ -1,0 +1,96 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <button class="close-btn" (click)="closeModal()">✖</button>
+
+    <form class="author-form" (ngSubmit)="createAuthors(newAuthor)" #authorForm="ngForm">
+      <h2>Crear Nuevo Autor</h2>
+
+      <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-control"
+          placeholder="Ej: Edgar Allan Poe"
+          required
+          [(ngModel)]="newAuthor.name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="imageUrl">URL de la Imagen:</label>
+        <input
+          type="url"
+          id="imageUrl"
+          name="imageUrl"
+          class="form-control"
+          placeholder="https://ejemplo.com/imagen.jpg"
+          [(ngModel)]="newAuthor.imageUrl"
+        />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dateOfBirth">Fecha de Nacimiento:</label>
+          <input
+            type="date"
+            id="dateOfBirth"
+            name="dateOfBirth"
+            class="form-control"
+            [(ngModel)]="newAuthor.dateOfBirth"
+          />
+        </div>
+        <div class="form-group">
+          <label for="dateOfDeath">Fecha de Fallecimiento:</label>
+          <input
+            type="date"
+            id="dateOfDeath"
+            name="dateOfDeath"
+            class="form-control"
+            [(ngModel)]="newAuthor.dateOfDeath"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="placeOfBirth">Lugar de Nacimiento:</label>
+          <input
+            type="text"
+            id="placeOfBirth"
+            name="placeOfBirth"
+            class="form-control"
+            placeholder="Ej: Boston, Massachusetts"
+            [(ngModel)]="newAuthor.placeOfBirth"
+          />
+        </div>
+        <div class="form-group">
+          <label for="placeOfDeath">Lugar de Fallecimiento:</label>
+          <input
+            type="text"
+            id="placeOfDeath"
+            name="placeOfDeath"
+            class="form-control"
+            placeholder="Ej: Baltimore, Maryland"
+            [(ngModel)]="newAuthor.placeOfDeath"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="biography">Biografía:</label>
+        <textarea
+          id="biography"
+          name="biography"
+          class="form-control textarea-biography"
+          rows="6"
+          placeholder="Escribe una breve biografía del autor..."
+          [(ngModel)]="newAuthor.biography"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Guardar Autor</button>
+    </form>
+  </div>
+</div>

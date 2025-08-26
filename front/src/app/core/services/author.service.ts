@@ -13,4 +13,8 @@ export class AuthorService {
       withCredentials: true,
     });
   }
+
+  createAuthor(author: Partial<Author>): Observable<Author> {
+    return this.http.post<Author>(`${this.apiUrl}/browse/createAuthor`, author,{ withCredentials: true });
+  }
 }

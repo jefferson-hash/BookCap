@@ -1,0 +1,121 @@
+/* styles.scss o author-create-modal.component.scss */
+
+/* Fondo oscuro del modal (backdrop) */
+.modal-backdrop {
+  position: fixed; /* Cubre toda la ventana */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+  display: flex; /* Para centrar el contenido del modal */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Contenedor principal del modal */
+.modal {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  width: 90%; /* Ocupa un porcentaje del ancho en pantallas pequeñas */
+  max-width: 700px; /* Ancho máximo en pantallas grandes */
+  position: relative; /* Para posicionar el botón de cierre */
+}
+
+/* Botón de cierre */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #777;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Estilos del formulario de creación de autor (reutilizando los estilos anteriores) */
+.author-form {
+  font-family: Arial, sans-serif;
+  /* background-color: #f9f9f9; Ya está dentro del modal blanco */
+  padding: 20px; /* Reduzco el padding ya que el modal tiene padding */
+  border-radius: 8px;
+  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); Ya está en el modal */
+  /* max-width: 700px; El max-width está en el modal */
+  margin: 0 auto; /* Centra el formulario dentro del modal */
+}
+
+.author-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #3f51b5;
+}
+
+.author-form .form-group {
+  margin-bottom: 15px;
+}
+
+.author-form .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.author-form .form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.author-form .form-control:focus {
+  outline: none;
+  border-color: #3f51b5;
+  box-shadow: 0 0 5px rgba(63, 81, 181, 0.5);
+}
+
+.author-form .textarea-biography {
+  resize: vertical;
+}
+
+.author-form .form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.author-form .form-row .form-group {
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+
+.author-form .submit-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.author-form .submit-btn:hover {
+  background-color: #303f9f;
+  transform: translateY(-2px);
+}
