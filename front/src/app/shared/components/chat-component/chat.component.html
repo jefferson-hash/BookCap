@@ -1,0 +1,26 @@
+<div class="chat-container">
+  <div class="chat-list">
+    <h3>Mis Chats</h3>
+    <ul>
+      <li *ngFor="let chat of chats" (click)="openChat(chat.ID)">Chat {{ chat.ID }}</li>
+    </ul>
+  </div>
+
+  <div class="chat-window" *ngIf="selectedChatId">
+    <div class="messages">
+      <div *ngFor="let msg of messages" [class.me]="msg.sender_ID">
+        <span>{{ msg.content }}</span>
+        <small>{{ msg.createdAt | date : 'shortTime' }}</small>
+      </div>
+    </div>
+
+    <div class="input-box">
+      <input
+        [(ngModel)]="newMessage"
+        (keyup.enter)="sendMessage()"
+        placeholder="Escribe un mensaje..."
+      />
+      <button (click)="sendMessage()">Enviar</button>
+    </div>
+  </div>
+</div>

@@ -5,7 +5,7 @@ import cds from "@sap/cds";
 export default async function registerHandler(req: any) {
   const { Users, UserRoles } = cds.entities("my.user");
 
-  let { nameUser, email, phone, password, confirmPasswor, userRole } = req.data;
+  let { nameUser, email, phone, password, confirmPassword, userRole } = req.data;
 
   // Validate user data
   const errors = await validateUser(req, Users);
@@ -14,7 +14,7 @@ export default async function registerHandler(req: any) {
   }
 
   // Validate password confirmation
-  if (password !== confirmPasswor) {
+  if (password !== confirmPassword) {
     return req.error(400, "Passwords do not match");
   }
 

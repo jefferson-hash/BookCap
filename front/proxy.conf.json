@@ -1,0 +1,13 @@
+{
+  "/chat": {
+    "target": "http://localhost:4004",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/socket.io": {
+    "target": "http://localhost:4004",
+    "ws": true,
+    "secure": false,
+    "changeOrigin": true
+  }
+}

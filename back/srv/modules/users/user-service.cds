@@ -23,7 +23,7 @@ service UserService @(path: '/user') {
                     email: String(100),
                     phone: String(20),
                     password: String(100),
-                    confirmPasswor: String(100),
+                    confirmPassword: String(100),
                     userRole: String(50),
                     isActive: Boolean)          returns String;
 
@@ -32,7 +32,6 @@ service UserService @(path: '/user') {
                       email: String(100),
                       phone: String(20),
                       password: String(100),
-                      confirmPasswor: String(100),
                       userRole: String(50),
                       isActive: Boolean)        returns String;
 

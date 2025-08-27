@@ -12,6 +12,8 @@ export default async function updateAuthor(req: any) {
     dateOfDeath,
     placeOfBirth,
     placeOfDeath,
+    biography,
+    imageUrl,
   } = req.data;
 
   // role extracted from the token
@@ -47,6 +49,8 @@ export default async function updateAuthor(req: any) {
   if (dateOfDeath) updateData.dateOfDeath = dateOfDeath;
   if (placeOfBirth) updateData.placeOfBirth = placeOfBirth;
   if (placeOfDeath) updateData.placeOfDeath = placeOfDeath;
+  if(imageUrl) updateData.imageUrl = imageUrl;
+  if (biography) updateData.biography = biography; 
 
   await cds.run(UPDATE(Authors).set(updateData).where({ ID: idAuthor }));
 
