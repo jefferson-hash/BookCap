@@ -1,10 +1,11 @@
 import cds from "@sap/cds";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+
 import { initChatSocket } from "./srv/modules/chat/chat.socket";
 
+// Apply general middlewares for HTTP/OData traffic
 cds.on("bootstrap", (app) => {
-  // === Middlewares ===
   app.use(
     cors({
       origin: "http://localhost:4200",
@@ -16,9 +17,11 @@ cds.on("bootstrap", (app) => {
   app.use(cookieParser());
 });
 
-// === Integrar socket.io después de que CAP arranque ===
-cds.on("listening", (server: any) => {
-  console.log("✅ CAP server escuchando...");
-  initChatSocket(server);
-});
+// Attach Socket.IO to the CAP server after it starts listening
+cds.on("listening", ({ server, url }: any) => {
+  console.log("✅ Servidor CAP escuchando en:", url);
 
+  initChatSocket(server);
+
+  console.log("✅ Servidor Socket.IO listo.");
+});

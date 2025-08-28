@@ -1,15 +1,15 @@
-// srv/modules/chat/chat.socket.ts
+// chat-socket.ts
 import { Server as SocketIOServer } from "socket.io";
 import cds from "@sap/cds";
 
 export function initChatSocket(server: any) {
   const io = new SocketIOServer(server, {
     cors: {
-      origin: (_, callback) => callback(null, true),
+      origin: "*", // Permite todos los orígenes para desarrollo
+      methods: ["GET", "POST"],
       credentials: true,
     },
-    transports: ["websocket", "polling"], // 👈 importante
-    path: "/socket.io",
+    transports: ["websocket", "polling"],
   });
 
   io.on("connection", (socket) => {
@@ -18,7 +18,6 @@ export function initChatSocket(server: any) {
     socket.on("chatMessage", async (data) => {
       const { chat_ID, sender_ID, content } = data;
 
-      // Persistir mensaje en CAP
       await cds.run(
         INSERT.into("my.chat.Messages").entries({
           chat_ID,
@@ -28,7 +27,6 @@ export function initChatSocket(server: any) {
         })
       );
 
-      // Emitir a la sala con los mismos nombres
       io.in(chat_ID).emit("chatMessage", {
         chat_ID,
         sender_ID,
@@ -46,4 +44,6 @@ export function initChatSocket(server: any) {
       console.log(`❌ Cliente desconectado: ${socket.id}`);
     });
   });
+
+  return io; // 👈 ahora puedes usar el io fuera
 }

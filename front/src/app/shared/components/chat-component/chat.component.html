@@ -1,9 +1,11 @@
 <div class="chat-container">
   <div class="chat-list">
     <h3>Mis Chats</h3>
-    <ul>
-      <li *ngFor="let chat of chats" (click)="openChat(chat.ID)">Chat {{ chat.ID }}</li>
-    </ul>
+    <div *ngFor="let user of users">
+      <p (click)="createChat(user.ID)" [ngClass]="{ selected: selectedUserId === user.ID }">
+        {{ user.name }}
+      </p>
+    </div>
   </div>
 
   <div class="chat-window" *ngIf="selectedChatId">

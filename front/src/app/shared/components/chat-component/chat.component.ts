@@ -13,16 +13,20 @@ import { CommonModule } from '@angular/common';
 })
 export class ChatComponent implements OnInit {
   chats: any[] = [];
+  users: any[] = [];
   messages: ChatMessage[] = [];
+  selectedUserId: string | null = null;
   selectedChatId: string | null = null;
-  userId = 'd460ccd8-09d8-4a7c-8e7c-f45d813d1378'; // tu userId real
+  userId = 'faa43834-8de1-4c61-9934-ccc007ed85a6'; // tu userId real
   newMessage = '';
 
   constructor(private chatService: ChatService) {}
 
   async ngOnInit() {
     // cargar chats del usuario
-    this.chats = await this.chatService.getChats(this.userId);
+    this.chats = await this.chatService.getChats();
+
+    this.users = await this.chatService.getAllUser();
 
     // escuchar nuevos mensajes vía socket
     this.chatService.onNewMessage().subscribe((msg) => {
@@ -32,11 +36,16 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  async createChat(user2: string) {
+    const result = await this.chatService.createChat(user2);  
+    this.selectedUserId = user2;
+    this.openChat(result.chatId);
+  }
+
   async openChat(chatId: string) {
     this.selectedChatId = chatId;
     this.chatService.joinChat(chatId);
 
-    // cargar historial del chat
     this.messages = await this.chatService.getMessages(chatId);
   }
 
@@ -48,9 +57,6 @@ export class ChatComponent implements OnInit {
       sender_ID: this.userId,
       content: this.newMessage,
     };
-
-    // persistencia vía OData
-    await this.chatService.sendMessageOData(msg);
 
     this.chatService.joinChat(this.selectedChatId);
 

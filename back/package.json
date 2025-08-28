@@ -13,7 +13,7 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
-    "express": "^4",
+    "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "socket.io": "^4.8.1",
     "vue": "^3.5.19"
@@ -30,14 +30,15 @@
     "@types/cookie-parser": "^1.4.9",
     "@types/dotenv": "^6.1.1",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^22.0.0",
+    "@types/node": "^22.18.0",
     "@types/vue": "^1.0.31",
     "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
     "tsx": "^4",
-    "typescript": "^5"
+    "typescript": "^5.9.2"
   },
   "scripts": {
-    "start": "cds-serve",
+    "start": "ts-node server.ts",
     "format": "prettier --write ."
   },
   "imports": {

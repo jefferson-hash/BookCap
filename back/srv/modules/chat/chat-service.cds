@@ -34,4 +34,8 @@ service ChatService @(path: '/chat') {
 
     // Marcar mensajes como leídos
     action markAsRead(chatId: UUID, userId: UUID)                           returns Integer;
+
+    action getChatsUser()                                                   returns many Chats;
+
+
 }
