@@ -38,16 +38,16 @@ export default async function loginHandler(req: any) {
   await cds.run(UPDATE(Users).set({ refreshToken }).where({ ID: user.ID }));
 
   // Set cookies
-  req._.res.cookie("auth-token", token, {
+  req.res.cookie("auth-token", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV === "production" ? true : false,
     sameSite: "Lax",
     maxAge: 900_000,
   });
 
-  req._.res.cookie("refresh-token", refreshToken, {
+  req.res.cookie("refresh-token", refreshToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV === "production" ? true : false,
     sameSite: "Lax",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });

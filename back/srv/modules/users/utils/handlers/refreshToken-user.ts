@@ -7,7 +7,7 @@ import {
 export default async function refreshTokenHandler(req: any) {
   const { Users } = cds.entities("my.user");
 
-  const cookies = req._?.req?.cookies;
+  const cookies = req.req?.cookies;
   const refreshToken = cookies?.["refresh-token"];
 
   if (!refreshToken) {
@@ -33,7 +33,7 @@ export default async function refreshTokenHandler(req: any) {
     role: user.role_ID,
   });
 
-  req._.res.cookie("auth-token", newAccessToken, {
+  req.res.cookie("auth-token", newAccessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "Lax",

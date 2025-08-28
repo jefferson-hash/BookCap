@@ -1,6 +1,8 @@
 // chat-socket.ts
 import { Server as SocketIOServer } from "socket.io";
 import cds from "@sap/cds";
+import { parse } from "cookie";
+import { validateAuthToken } from "../../middlewares/authMiddleware"; 
 
 export function initChatSocket(server: any) {
   const io = new SocketIOServer(server, {
@@ -12,11 +14,37 @@ export function initChatSocket(server: any) {
     transports: ["websocket", "polling"],
   });
 
+  // Middleware de auth para sockets
+  io.use(async (socket, next) => {
+    try {
+      const cookieHeader = socket.request.headers.cookie;
+      if (!cookieHeader) {
+        return next(new Error("No cookies present"));
+      }
+
+      const cookies = parse(cookieHeader);
+
+      // simulamos la estructura que espera validateAuthToken
+      const req: any = { _: { req: { cookies } }, error: (c: number, m: string) => new Error(m) };
+
+      const user = await validateAuthToken(req);
+
+      if (!user) return next(new Error("Unauthorized"));
+
+      // Guardamos en socket.data
+      socket.data.user = user;
+      next();
+    } catch (err) {
+      next(new Error("Authentication error"));
+    }
+  });
+
   io.on("connection", (socket) => {
-    console.log(`⚡ Cliente conectado: ${socket.id}`);
+    console.log(`⚡ Cliente conectado: ${socket.id} - user: ${socket.data.user?.ID}`);
 
     socket.on("chatMessage", async (data) => {
-      const { chat_ID, sender_ID, content } = data;
+      const { chat_ID, content } = data;
+      const sender_ID = socket.data.user.ID; // Ahora viene del token
 
       await cds.run(
         INSERT.into("my.chat.Messages").entries({
@@ -37,7 +65,7 @@ export function initChatSocket(server: any) {
 
     socket.on("joinChat", (chat_ID: string) => {
       socket.join(chat_ID);
-      console.log(`🟢 Usuario ${socket.id} entró al chat ${chat_ID}`);
+      console.log(`🟢 Usuario ${socket.id} (${socket.data.user?.ID}) entró al chat ${chat_ID}`);
     });
 
     socket.on("disconnect", () => {
@@ -45,5 +73,5 @@ export function initChatSocket(server: any) {
     });
   });
 
-  return io; // 👈 ahora puedes usar el io fuera
+  return io;
 }

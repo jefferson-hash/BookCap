@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, firstValueFrom, of, tap } from 'rxjs';
 import { NewUser, User } from '../models/user.model';
 
 @Injectable({
@@ -31,11 +31,15 @@ export class AuthService {
   }
 
   registerUser(newUser: NewUser) {
-    return this.http.post<{ newUser: NewUser }>(
-      `${this.apiUrl}/user/register`,
-      newUser ,
-      { withCredentials: true }
-    );
+    return this.http.post<{ newUser: NewUser }>(`${this.apiUrl}/user/register`, newUser, {
+      withCredentials: true,
+    });
+  }
+
+  async getMe(): Promise<User> {
+    return firstValueFrom(
+      this.http.get<{ value: User[] }>(`${this.apiUrl}/user/me`, { withCredentials: true })
+    ).then((res) => res.value[0]);
   }
 
   getUserInfo() {
@@ -62,8 +66,10 @@ export class AuthService {
   }
 
   logout() {
-    return this.http
-      .post(`${this.apiUrl}/user/logout`, {}, { withCredentials: true })
-      .pipe(tap(() => this.userSubject.next(undefined)));
+    return this.http.post(`${this.apiUrl}/user/logout`, {}, { withCredentials: true }).pipe(
+      tap(() => {
+        this.userSubject.next(undefined); // 🔑 limpiar usuario en frontend
+      })
+    );
   }
 }

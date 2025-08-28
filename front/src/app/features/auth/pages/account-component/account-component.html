@@ -1,0 +1,18 @@
+<div class="account-container">
+  <h2>Mi Cuenta</h2>
+
+  <div class="user-info">
+    <p><strong>Nombre:</strong> {{ user?.name }}</p>
+    <p><strong>Email:</strong> {{ user?.email }}</p>
+    <p><strong>Teléfono:</strong> {{ user?.phone }}</p>
+    <p>
+      <strong>Rol:</strong>
+      <span class="role" [ngClass]="user?.role">{{ user?.role }}</span>
+    </p>
+  </div>
+
+  <div class="action">
+    <button class="edit-btn">Editar Perfil</button>
+    <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
+  </div>
+</div>

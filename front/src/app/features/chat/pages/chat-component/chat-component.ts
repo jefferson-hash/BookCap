@@ -1,43 +1,50 @@
-import { Component, OnInit } from '@angular/core';
-import { ChatService } from '../../../core/services/chat.service';
-import { ChatMessage } from '../../../core/models/chat.model';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ChatMessage } from '../../../../core/models/chat.model';
+import { ChatService } from '../../../../core/services/chat.service';
 
 @Component({
-  selector: 'app-chat',
+  selector: 'app-chat-component',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss'],
+  templateUrl: './chat-component.html',
+  styleUrl: './chat-component.scss',
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
   chats: any[] = [];
   users: any[] = [];
   messages: ChatMessage[] = [];
   selectedUserId: string | null = null;
   selectedChatId: string | null = null;
-  userId = 'faa43834-8de1-4c61-9934-ccc007ed85a6'; // tu userId real
+  userId: string | undefined;
+  nameUser: string | undefined;
   newMessage = '';
+
+  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
 
   constructor(private chatService: ChatService) {}
 
   async ngOnInit() {
-    // cargar chats del usuario
     this.chats = await this.chatService.getChats();
+
+    const me = await this.chatService.getMe();
+    this.userId = me.ID;
+    this.nameUser = me.name;
 
     this.users = await this.chatService.getAllUser();
 
-    // escuchar nuevos mensajes vía socket
+    // escuchar mensajes en tiempo real
     this.chatService.onNewMessage().subscribe((msg) => {
       if (msg.chat_ID === this.selectedChatId) {
         this.messages.push(msg);
+        this.scrollToBottom();
       }
     });
   }
 
   async createChat(user2: string) {
-    const result = await this.chatService.createChat(user2);  
+    const result = await this.chatService.createChat(user2);
     this.selectedUserId = user2;
     this.openChat(result.chatId);
   }
@@ -45,24 +52,33 @@ export class ChatComponent implements OnInit {
   async openChat(chatId: string) {
     this.selectedChatId = chatId;
     this.chatService.joinChat(chatId);
-
     this.messages = await this.chatService.getMessages(chatId);
+    this.scrollToBottom();
   }
 
   async sendMessage() {
     if (!this.newMessage.trim() || !this.selectedChatId) return;
 
-    const msg: ChatMessage = {
-      chat_ID: this.selectedChatId,
-      sender_ID: this.userId,
-      content: this.newMessage,
-    };
-
     this.chatService.joinChat(this.selectedChatId);
 
-    // realtime vía socket
-    this.chatService.sendMessageSocket(msg);
+    const msg: ChatMessage = {
+      chat_ID: this.selectedChatId,
+      content: this.newMessage,
+      sender_ID: this.userId!,
+    };
 
+    this.chatService.sendMessageSocket(msg);
     this.newMessage = '';
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    try {
+      this.messagesContainer.nativeElement.scrollTop =
+        this.messagesContainer.nativeElement.scrollHeight;
+    } catch (err) {}
   }
 }

@@ -3,15 +3,17 @@ import { jwtVerify } from "../services/token.service";
 
 export async function validateAuthToken(req: any) {
   try {
-    const cookies = req._?.req?.cookies;
+    let cookies = req._?.req?.cookies;
     let authToken = cookies?.["auth-token"];
 
     if (!authToken) {
       // No hay token -> intento refrescar
 
-      authToken = await refreshTokenHandler(req);
+      await refreshTokenHandler(req);
+      cookies = req._?.req?.cookies;
+      authToken = cookies?.["auth-token"];
       if (!authToken) {
-        return req.error(401, "Authorization token missing");
+        throw req.error(401, "Authorization token missing");
       }
     }
 
@@ -20,14 +22,16 @@ export async function validateAuthToken(req: any) {
 
     if (!decoded) {
       // Token inválido -> intento refrescar
-      authToken = await refreshTokenHandler(req);
+      await refreshTokenHandler(req);
+      cookies = req._?.req?.cookies;
+      authToken = cookies?.["auth-token"];
       if (!authToken) {
-        return req.error(401, "Invalid token");
+        throw req.error(401, "Invalid token");
       }
 
       decoded = jwtVerify(authToken);
       if (!decoded) {
-        return req.error(401, "Invalid token after refresh");
+        throw req.error(401, "Invalid token after refresh");
       }
     }
 
