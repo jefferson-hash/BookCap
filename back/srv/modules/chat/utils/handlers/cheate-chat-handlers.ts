@@ -20,7 +20,7 @@ export default async function createChatHandler(req: any) {
   if (!existsUser2)
     return req.error(404, `El usuario destino (${user2}) no existe.`);
 
-  // ✅ CQN template literal compatible con TypeScript y SQLite
+
   const existing = await SELECT.one.from(Chats).where`
     (user1_ID = ${userId} AND user2_ID = ${user2}) 
     OR (user1_ID = ${user2} AND user2_ID = ${userId})

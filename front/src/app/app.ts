@@ -12,8 +12,6 @@ import { MenuComponent } from './shared/components/menu-component/menu-component
   styleUrls: ['./app.scss'],
 })
 export class App {
-  title = signal('Librery');
-
   constructor(private authService: AuthService) {}
 
   ngOnInit() {

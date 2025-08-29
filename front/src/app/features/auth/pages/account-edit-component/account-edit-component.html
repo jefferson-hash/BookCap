@@ -1,0 +1,26 @@
+<div class="account-container">
+  <form (ngSubmit)="saveChanges()" *ngIf="user">
+    <h2>Editar Cuenta</h2>
+    <div class="user-info">
+      <label>
+        <strong>Nombre:</strong>
+        <input type="text" [(ngModel)]="user.name" name="name" class="input-edit" />
+      </label>
+
+      <label>
+        <strong>Email:</strong>
+        <input type="email" [(ngModel)]="user.email" name="email" class="input-edit" />
+      </label>
+
+      <label>
+        <strong>Teléfono:</strong>
+        <input type="text" [(ngModel)]="user.phone" name="phone" class="input-edit" />
+      </label>
+    </div>
+
+    <div class="action">
+      <button type="submit" class="save-btn">Guardar Cambios</button>
+      <button type="button" class="cancel-btn" (click)="cancelEdit()">Cancelar</button>
+    </div>
+  </form>
+</div>

@@ -2,12 +2,12 @@
 import { Server as SocketIOServer } from "socket.io";
 import cds from "@sap/cds";
 import { parse } from "cookie";
-import { validateAuthToken } from "../../middlewares/authMiddleware"; 
+import { validateAuthToken } from "../../middlewares/authMiddleware";
 
 export function initChatSocket(server: any) {
   const io = new SocketIOServer(server, {
     cors: {
-      origin: "*", // Permite todos los orígenes para desarrollo
+      origin: "*",
       methods: ["GET", "POST"],
       credentials: true,
     },
@@ -18,6 +18,8 @@ export function initChatSocket(server: any) {
   io.use(async (socket, next) => {
     try {
       const cookieHeader = socket.request.headers.cookie;
+      console.log("cookiesHeader: ", cookieHeader);
+
       if (!cookieHeader) {
         return next(new Error("No cookies present"));
       }
@@ -25,7 +27,10 @@ export function initChatSocket(server: any) {
       const cookies = parse(cookieHeader);
 
       // simulamos la estructura que espera validateAuthToken
-      const req: any = { _: { req: { cookies } }, error: (c: number, m: string) => new Error(m) };
+      const req: any = {
+        _: { req: { cookies } },
+        error: (c: number, m: string) => new Error(m),
+      };
 
       const user = await validateAuthToken(req);
 
@@ -40,7 +45,9 @@ export function initChatSocket(server: any) {
   });
 
   io.on("connection", (socket) => {
-    console.log(`⚡ Cliente conectado: ${socket.id} - user: ${socket.data.user?.ID}`);
+    console.log(
+      `⚡ Cliente conectado: ${socket.id} - user: ${socket.data.user?.ID}`
+    );
 
     socket.on("chatMessage", async (data) => {
       const { chat_ID, content } = data;
@@ -65,7 +72,9 @@ export function initChatSocket(server: any) {
 
     socket.on("joinChat", (chat_ID: string) => {
       socket.join(chat_ID);
-      console.log(`🟢 Usuario ${socket.id} (${socket.data.user?.ID}) entró al chat ${chat_ID}`);
+      console.log(
+        `🟢 Usuario ${socket.id} (${socket.data.user?.ID}) entró al chat ${chat_ID}`
+      );
     });
 
     socket.on("disconnect", () => {

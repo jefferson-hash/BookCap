@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, catchError, firstValueFrom, of, tap } from 'rxjs';
-import { NewUser, User } from '../models/user.model';
+import { NewUser, UpdateUser, User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -59,6 +59,10 @@ export class AuthService {
           return of(undefined);
         })
       );
+  }
+
+  updateUser(userUpdate: UpdateUser) {
+    return this.http.post(`${this.apiUrl}/user/updateUser`, userUpdate, { withCredentials: true });
   }
 
   refreshToken() {

@@ -18,7 +18,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   selectedUserId: string | null = null;
   selectedChatId: string | null = null;
   userId: string | undefined;
-  nameUser: string | undefined;
   newMessage = '';
 
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
@@ -30,7 +29,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
     const me = await this.chatService.getMe();
     this.userId = me.ID;
-    this.nameUser = me.name;
 
     this.users = await this.chatService.getAllUser();
 

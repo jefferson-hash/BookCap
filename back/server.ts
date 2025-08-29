@@ -19,9 +19,9 @@ cds.on("bootstrap", (app) => {
 
 // Attach Socket.IO to the CAP server after it starts listening
 cds.on("listening", ({ server, url }: any) => {
-  console.log("✅ Servidor CAP escuchando en:", url);
+  console.log("Servidor CAP escuchando.......");
 
   initChatSocket(server);
 
-  console.log("✅ Servidor Socket.IO listo.");
+  console.log("Servidor Socket.IO listo......");
 });

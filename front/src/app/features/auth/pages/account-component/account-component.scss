@@ -6,7 +6,7 @@
   padding: 30px;
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,7 @@
 
 /* Título de la sección */
 .account-container h2 {
-  color: #3f51b5;
+  color: #4b4a4a;
   font-size: 2em;
   font-weight: bold;
   margin-bottom: 30px;
@@ -48,7 +48,7 @@
 }
 
 .user-info strong {
-  color: #3f51b5;
+  color: #4b4a4a;
   margin-right: 15px;
 }
 
@@ -98,7 +98,7 @@
 }
 
 .logout-btn {
-  background-color: #d32f2f;
+  background-color: #f44336;
   color: #fff;
   width: 45%;
   transition: all 0.3s ease-in-out;
@@ -111,7 +111,6 @@
 }
 
 .logout-btn:hover {
-  background-color: #b71c1c;
+  background-color: #c6392f;
   transform: scale(1.03);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
